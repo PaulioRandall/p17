@@ -1,0 +1,73 @@
+<script>
+	import { getContext } from 'svelte'
+
+	import Group from './Group.svelte'
+	import Label from './Label.svelte'
+
+	const field = getContext('p17-field')
+	const values = getContext('p17-values')
+	const errors = getContext('p17-errors')
+
+	let checked = {}
+	const updateChecked = () => {
+		const v = $values[field.name]
+		checked = {}
+
+		if (!v) {
+			return
+		}
+
+		const list = v.split(',')
+		for (const f of field.options) {
+			checked[f.value] = !!list.includes(f.value)
+		}
+	}
+
+	$: $values[field.name] = Object.entries(checked) //
+		.filter(([k, v]) => !!v) //
+		.map(([k, v]) => k)
+		.join(',')
+
+	$: updateChecked($values[field.name])
+</script>
+
+<Group>
+	{#if field.options}
+		{#each field.options as option, i (option.value)}
+			{@const optionId = `${field.inputElementId}-${i}`}
+			<div class="p17-container-checkboxgroup">
+				<input
+					class:p17-input={true}
+					class:p17-input-checkboxgroup={true}
+					type="checkbox"
+					id={optionId}
+					name={field.name}
+					aria-describedby={field.hintElementId}
+					aria-errormessage={field.errorElementId}
+					aria-invalid={!!$errors[field.name]}
+					bind:checked={checked[option.value]}
+					on:blur
+					on:focus
+					on:focusin
+					on:focusout
+					on:keydown
+					on:keypress
+					on:keyup
+					on:click
+					on:mousedown
+					on:mouseenter
+					on:mouseleave
+					on:mouseout
+					on:mouseover
+					on:mouseup
+					on:touchcancel
+					on:touchend
+					on:touchstart
+					{...$$restProps} />
+				<label for={optionId} class="p17-label p17-label-checkboxgroup">
+					{option.label}
+				</label>
+			</div>
+		{/each}
+	{/if}
+</Group>
