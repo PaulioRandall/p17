@@ -8,17 +8,21 @@ jobs:
     name: npm-publish
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '18.x'
-      - run: npm ci
-      - run: npm build
-      - run: npm package
-      - name: Publish if version has been updated
-      - uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.NPM_AUTH_TOKEN }}
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18.x'
+    - name: Install dependencies
+      run: npm ci
+    - name: Build project
+      run: npm build
+    - name: Package project
+      run: npm package
+    - name: Publish to NPM
+      uses: JS-DevTools/npm-publish@v3
+      with:
+        token: ${{ secrets.NPM_AUTH_TOKEN }}
