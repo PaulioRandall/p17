@@ -22,7 +22,7 @@ jobs:
       with:
         workspace: "."
         publish_command: "npm"
-        publish_args: "--dry-run true"
+        publish_args: ""
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
