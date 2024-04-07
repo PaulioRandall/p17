@@ -10,6 +10,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '>=18.x'
     - name: Build and package
       run: npm ci && npm run build && npm run package
     - name: Publish if version has been updated
