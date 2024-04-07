@@ -1,7 +1,13 @@
 <script>
+	import { browser } from '$app/environment'
 	import { Form, Field } from 'p17'
-	import { PopulateButton, ResetButton, SubmitButton } from 'p17'
-	import { FormDebugPrinter, FieldDebugPrinter, FormDebugTable } from 'p17'
+	import {
+		ButtonPopulate,
+		ButtonReset,
+		ButtonUnvalidate,
+		ButtonSubmit,
+	} from 'p17'
+	import { DebugFormPrinter, DebugFieldPrinter, DebugFormTable } from 'p17'
 
 	const submit = (values) => {
 		console.log('Submit values: ', values)
@@ -13,26 +19,30 @@
 
 	<Form {submit} class="my-form">
 		<div class="button-bar">
-			<PopulateButton
-				label="Quick fill"
-				values={{
-					field_text: 'Text',
-					field_search: 'Query',
-					field_number: '123.456',
-					field_number_integer: '123',
-					field_number_leadzeros: '0123',
-					field_number_multipoint: '123.456.789',
-					field_email: 'name@example.com',
-					field_tel: '+77890123456',
-					field_tel_national: '07890123456',
-					field_url: 'https://example.com/path',
-					field_password: 'password',
-					field_checkbox: true,
-					field_checkbox_group: 'alice,charlie',
-					field_radio_group: 'bob',
-					field_slider: '8',
-				}} />
-			<ResetButton />
+			{#if browser}
+				<ButtonPopulate
+					label="Quick fill"
+					values={{
+						field_text: 'Text',
+						field_search: 'Query',
+						field_number: '123.456',
+						field_number_integer: '123',
+						field_number_leadzeros: '0123',
+						field_number_multipoint: '123.456.789',
+						field_email: 'name@example.com',
+						field_tel: '+77890123456',
+						field_tel_national: '07890123456',
+						field_url: 'https://example.com/path',
+						field_password: 'password',
+						field_checkbox: true,
+						field_checkbox_group: 'alice,charlie',
+						field_radio_group: 'bob',
+						field_slider: '8',
+					}} />
+				<ButtonReset />
+				<ButtonUnvalidate />
+			{/if}
+			<ButtonSubmit />
 		</div>
 		<Field type="hidden" name="field_hidden" value="Sneaky boy" />
 		<Field
@@ -151,9 +161,9 @@
 			min="-20"
 			max="20"
 			step="2" />
-		<SubmitButton class="my-submit-button" />
-		<FormDebugPrinter />
-		<FormDebugTable />
+		<ButtonSubmit class="bottom-submit-button" />
+		<DebugFormPrinter />
+		<DebugFormTable />
 	</Form>
 </main>
 
@@ -169,7 +179,12 @@
 		margin-bottom: 3rem;
 	}
 
-	:global(.my-submit-button) {
+	.button-bar {
+		display: flex;
+		column-gap: 1rem;
+	}
+
+	:global(.bottom-submit-button) {
 		margin-left: auto;
 	}
 </style>
