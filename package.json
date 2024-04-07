@@ -24,7 +24,8 @@
 		}
 	},
 	"files": [
-		"./index.js"
+		"./index.js",
+		"src/libs"
 	],
 	"scripts": {
 		"fmt": "prettier --plugin prettier-plugin-svelte --log-level warn --write .",
