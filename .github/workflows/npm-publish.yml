@@ -2,7 +2,7 @@ name: npm-publish
 on:
   push:
     branches:
-      - main
+      - trunk
 jobs:
   npm-publish:
     name: npm-publish
