@@ -13,7 +13,8 @@ export { default as Error } from './Error.svelte'
 
 export { default as FormThemeYellow } from './FormThemeYellow.svelte'
 
-export { default as FormDebugger } from './FormDebugger.svelte'
-export { default as FieldDebugger } from './FieldDebugger.svelte'
+export { default as FormDebugTable } from './FormDebugTable.svelte'
+export { default as FormDebugPrinter } from './FormDebugPrinter.svelte'
+export { default as FieldDebugPrinter } from './FieldDebugPrinter.svelte'
 
 export * from './shared'

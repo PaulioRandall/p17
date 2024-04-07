@@ -1,7 +1,7 @@
 <script>
 	import { Form, Field } from 'p17'
 	import { PopulateButton, ResetButton, SubmitButton } from 'p17'
-	import { FormDebugger, FieldDebugger } from 'p17'
+	import { FormDebugPrinter, FieldDebugPrinter, FormDebugTable } from 'p17'
 
 	const submit = (values) => {
 		console.log('Submit values: ', values)
@@ -152,7 +152,8 @@
 			max="20"
 			step="2" />
 		<SubmitButton class="my-submit-button" />
-		<FormDebugger />
+		<FormDebugPrinter />
+		<FormDebugTable />
 	</Form>
 </main>
 
