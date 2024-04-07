@@ -1,8 +1,8 @@
 name: npm-publish
 on:
   push:
-    branches:
-      - trunk
+    tags:
+      - 'v*.*.*'
 jobs:
   npm-publish:
     name: npm-publish
@@ -11,16 +11,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
     - name: Build and package
-      run: npm run build && npm run package
+      run: npm ci && npm run build && npm run package
     - name: Publish if version has been updated
       uses: pascalgn/npm-publish-action@1.3.9
       with:
-        tag_name: "v%s"
-        tag_message: "v%s"
-        create_tag: "true"
-        commit_pattern: "^v(\\d+\\.\\d+\\.\\d+(\\-\\S+)?)$"
         workspace: "."
-        publish_command: "npm publish"
+        publish_command: "npm"
         publish_args: "--dry-run true"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
