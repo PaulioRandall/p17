@@ -44,6 +44,7 @@
 		options,
 		format,
 		validate,
+		initValue: value,
 	}
 
 	setContext('p17-field', field)

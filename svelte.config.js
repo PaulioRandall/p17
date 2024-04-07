@@ -6,7 +6,7 @@ export default {
 		adapter: adapter(),
 		alias: {
 			$routes: path.resolve('./src/routes'),
-			p17: path.resolve('./src/lib/p17'),
+			p17: path.resolve('./src/lib'),
 		},
 	},
 }

@@ -47,6 +47,9 @@
 		--color-input-border: #a0a0a0;
 		--color-input-placeholder: #101010;
 
+		--color-button: #202020;
+		--color-button-bg: #c8c8c8;
+
 		--color-button-submit: #202020;
 		--color-button-submit-bg: #80d080;
 
@@ -61,6 +64,9 @@
 		--dark-color-input-border: #a0a0a0;
 		--dark-color-input-placeholder: #d0d0d0;
 
+		--color-button: #101010;
+		--color-button-bg: #909090;
+
 		--dark-color-button-submit: #f0f0f0;
 		--dark-color-button-submit-bg: #104810;
 	}
@@ -69,13 +75,13 @@
 		display: flex;
 		flex-direction: column;
 		row-gap: 2rem;
+		width: 100%;
 	}
 
 	.p17-form :global(.p17-field) {
 		display: flex;
 		flex-direction: column;
 		row-gap: 0.5rem;
-		width: 100%;
 
 		padding: 0.5rem;
 		border-radius: 0.25rem;
@@ -197,13 +203,18 @@
 		text-align: center;
 	}
 
-	.p17-form :global(.p17-submit-button) {
+	.p17-form :global(.p17-button) {
 		padding: 0.5rem 1rem;
 		font-weight: 500;
 		font-size: 1.2em;
 		border-radius: 0.25rem;
 		cursor: pointer;
 
+		color: var(--color-button);
+		background-color: var(--color-button-bg);
+	}
+
+	.p17-form :global(.p17-button-submit) {
 		color: var(--color-button-submit);
 		background-color: var(--color-button-submit-bg);
 	}

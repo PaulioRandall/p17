@@ -8,6 +8,9 @@
 	const field = getContext('p17-field')
 	const values = getContext('p17-values')
 	const errors = getContext('p17-errors')
+
+	let checked = field.initValue
+	$: $values[field.name] = checked.toString()
 </script>
 
 <Hint />
@@ -21,7 +24,7 @@
 		aria-describedby={field.hintElementId}
 		aria-errormessage={field.errorElementId}
 		aria-invalid={!!$errors[field.name]}
-		bind:checked={$values[field.name]}
+		bind:checked
 		on:blur
 		on:focus
 		on:focusin

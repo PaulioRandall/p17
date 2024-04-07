@@ -8,12 +8,27 @@
 	const values = getContext('p17-values')
 	const errors = getContext('p17-errors')
 
-	const checked = {}
+	let checked = {}
+	const updateChecked = () => {
+		const v = $values[field.name]
+		checked = {}
+
+		if (!v) {
+			return
+		}
+
+		const list = v.split(',')
+		for (const f of field.options) {
+			checked[f.value] = !!list.includes(f.value)
+		}
+	}
 
 	$: $values[field.name] = Object.entries(checked) //
 		.filter(([k, v]) => !!v) //
 		.map(([k, v]) => k)
 		.join(',')
+
+	$: updateChecked($values[field.name])
 </script>
 
 <Group>

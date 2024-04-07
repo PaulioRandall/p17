@@ -1,4 +1,5 @@
 <script>
+	import './layout.css'
 </script>
 
 <div class="page">
@@ -12,16 +13,17 @@
 		display: flex;
 		flex-direction: column;
 
-		align-items: center;
-		justify-content: center;
+		overflow-x: hidden;
 
-		min-height: 100svh;
+		width: 100%;
+		max-width: 100%;
+		min-height: 100vh;
 	}
 
 	.content {
 		flex-grow: 1;
 
-		max-width: 100%;
 		width: 100%;
+		max-width: 100%;
 	}
 </style>

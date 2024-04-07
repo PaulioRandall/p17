@@ -1,6 +1,8 @@
 <script>
 	import { getContext } from 'svelte'
 
+	export let label = 'Submit'
+
 	const form = getContext('p17-form')
 	const fields = getContext('p17-fields')
 	const values = getContext('p17-values')
@@ -49,7 +51,8 @@
 
 <input
 	type="submit"
-	value="Submit"
+	value={label}
 	on:click={doSubmit}
-	class:p17-submit-button={true}
+	class:p17-button={true}
+	class:p17-button-submit={true}
 	{...$$restProps} />
