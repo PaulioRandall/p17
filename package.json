@@ -28,11 +28,16 @@
 	],
 	"scripts": {
 		"fmt": "prettier --plugin prettier-plugin-svelte --log-level warn --write .",
-		"commit": "npm run fmt && npm run test && cat ./scripts/ready-to-ship.txt"
+		"build": "vite build",
+		"dev": "npm run fmt && vite dev --port 3000",
+		"commit": "npm run fmt && npm run build && cat ./scripts/ready-to-ship.txt"
 	},
 	"devDependencies": {
+		"@sveltejs/adapter-auto": "3.2.0",
+		"@sveltejs/kit": "2.5.5",
 		"prettier": "3.2.5",
-		"prettier-plugin-svelte": "3.2.2"
+		"prettier-plugin-svelte": "3.2.2",
+		"vite": "5.2.8"
 	},
 	"peerDependencies": {
 		"svelte": "4.x"
