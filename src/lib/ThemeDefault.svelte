@@ -6,7 +6,7 @@
 	.p17-form-theme {
 		display: flex;
 		flex-direction: column;
-		row-gap: 2rem;
+		row-gap: 1.6rem;
 	}
 
 	.p17-form-theme-default {
@@ -15,16 +15,13 @@
 			Specify colors directly if that's what you prefer.
 		*/
 
-		--color-field-not-validated: #c0c0f0;
-		--color-field-invalid: #f0d0d0;
-		--color-field-valid: #a0e0a0;
+		color: #101010;
+		font-family: sans-serif, Arial, Helvetica;
 
-		--color-label: #101050;
-		--color-hint: #303030;
-		--color-error: #b02020;
-		--color-input-bg: #ffffff;
-		--color-input-border: #a0a0a0;
-		--color-input-placeholder: #101010;
+		--light-color-input: #d4def2;
+		--light-color-input-valid: #cfecc1;
+		--light-color-input-error: #f2dbd5;
+		--light-color-input-focus: #345dab;
 
 		--color-button: #202020;
 		--color-button-bg: #c8c8c8;
@@ -57,22 +54,11 @@
 		flex-direction: column;
 		row-gap: 0.5rem;
 
-		padding: 0.5rem;
+		padding: 0 0.5rem;
 		border-radius: 0.25rem;
 		border: 1px solid transparent;
-	}
 
-	.p17-form-theme-default :global(.p17-field-not-validated) {
-		background: var(--color-field-not-validated);
-	}
-
-	.p17-form-theme-default :global(.p17-field-invalid) {
-		background: var(--color-field-invalid);
-	}
-
-	.p17-form-theme-default :global(.p17-field-valid) {
-		border-color: transparent;
-		background: var(--color-field-valid);
+		background: #fff;
 	}
 
 	.p17-form-theme-default :global(.p17-group) {
@@ -92,35 +78,27 @@
 
 	.p17-form-theme-default :global(.p17-legend) {
 		float: left;
-		margin: 0;
-		border: 0;
-		padding: 0;
-		margin-bottom: -0.25rem;
-
-		font-size: 1.2rem;
-		color: var(--color-label);
-		font-weight: 500;
 	}
 
+	.p17-form-theme-default :global(.p17-legend),
 	.p17-form-theme-default :global(.p17-label) {
 		margin: 0;
 		padding: 0;
-		margin-bottom: -0.25rem;
 
 		font-size: 1.2rem;
-		color: var(--color-label);
+		line-height: 0.8em;
 		font-weight: 500;
 	}
 
 	.p17-form-theme-default :global(.p17-hint) {
 		margin: 0;
-		color: var(--color-hint);
+		color: #202020;
 	}
 
 	.p17-form-theme-default :global(.p17-error) {
 		margin: 0;
 		font-weight: 500;
-		color: var(--color-error);
+		color: #862a2e;
 	}
 
 	.p17-form-theme-default :global(.p17-input) {
@@ -128,12 +106,25 @@
 		padding: 0.5rem;
 		border-radius: 0.25rem;
 		border: 1px solid transparent;
-		border-color: var(--color-input-border);
-		background-color: var(--color-input-bg);
+		border-color: #909090;
+		background-color: var(--light-color-input);
+	}
+
+	.p17-form-theme-default :global(.p17-input:focus) {
+		outline: 2px solid var(--light-color-input-focus);
+	}
+
+	.p17-form-theme-default :global(.p17-field-invalid .p17-input) {
+		background-color: var(--light-color-input-error);
+	}
+
+	.p17-form-theme-default :global(.p17-field-valid .p17-input) {
+		background-color: var(--light-color-input-valid);
 	}
 
 	.p17-form-theme-default :global(.p17-input::placeholder) {
-		color: var(--color-input-placeholder);
+		color: #202020;
+		opacity: 0.7;
 	}
 
 	.p17-form-theme-default :global(.p17-output) {
@@ -266,15 +257,59 @@
 	.p17-form-theme-default :global(.p17-options-checkbox) {
 	}
 
-	.p17-form-theme-default :global(.p17-container-checkbox) {
+	.p17-form-theme-default :global(.p17-container-checkbox),
+	.p17-form-theme-default :global(.p17-container-checkboxgroup),
+	.p17-form-theme-default :global(.p17-container-radiogroup) {
 		display: flex;
 		column-gap: 0.5rem;
 		align-items: center;
 	}
 
-	.p17-form-theme-default :global(.p17-input-checkbox) {
+	.p17-form-theme-default :global(.p17-input-checkbox),
+	.p17-form-theme-default :global(.p17-input-checkboxgroup),
+	.p17-form-theme-default :global(.p17-input-radiogroup) {
+		appearance: none;
+		position: relative;
+
 		width: 1.6rem;
 		height: 1.6rem;
+
+		background-color: var(--light-color-input);
+		padding: 2px;
+		border-radius: 4px;
+
+		cursor: pointer;
+	}
+
+	.p17-form-theme-default :global(.p17-input-radiogroup) {
+		border-radius: 100%;
+	}
+
+	.p17-form-theme-default :global(.p17-input-checkbox:checked:active),
+	.p17-form-theme-default :global(.p17-input-checkbox:active),
+	.p17-form-theme-default :global(.p17-input-checkboxgroup:checked:active),
+	.p17-form-theme-default :global(.p17-input-checkboxgroup:active),
+	.p17-form-theme-default :global(.p17-input-radiogroup:checked:active),
+	.p17-form-theme-default :global(.p17-input-radiogroup:active) {
+		background-color: var(--light-color-input);
+	}
+
+	.p17-form-theme-default :global(.p17-field-invalid .p17-input-checkbox),
+	.p17-form-theme-default :global(.p17-field-invalid .p17-input-checkboxgroup),
+	.p17-form-theme-default
+		:global(.p17-field-invalid .p17-input-radiogroup:active) {
+		background-color: var(--light-color-input-error);
+	}
+
+	.p17-form-theme-default :global(.p17-input-checkbox:checked:after),
+	.p17-form-theme-default :global(.p17-input-checkboxgroup:checked:after),
+	.p17-form-theme-default :global(.p17-input-radiogroup:checked:after) {
+		position: absolute;
+		content: '\2714';
+		font-size: 2.6rem;
+		top: -1rem;
+		left: 0;
+		color: #606060;
 	}
 
 	.p17-form-theme-default :global(.p17-label-checkbox) {
@@ -298,14 +333,9 @@
 	}
 
 	.p17-form-theme-default :global(.p17-container-checkboxgroup) {
-		display: flex;
-		column-gap: 0.5rem;
-		align-items: center;
 	}
 
 	.p17-form-theme-default :global(.p17-input-checkboxgroup) {
-		width: 1.6rem;
-		height: 1.6rem;
 	}
 
 	.p17-form-theme-default :global(.p17-label-checkboxgroup) {
@@ -329,14 +359,9 @@
 	}
 
 	.p17-form-theme-default :global(.p17-container-radiogroup) {
-		display: flex;
-		column-gap: 0.5rem;
-		align-items: center;
 	}
 
 	.p17-form-theme-default :global(.p17-input-radiogroup) {
-		width: 1.6rem;
-		height: 1.6rem;
 	}
 
 	.p17-form-theme-default :global(.p17-label-radiogroup) {
@@ -360,8 +385,63 @@
 		align-items: center;
 	}
 
-	.p17-form-theme-default :global(.p17-input-slider) {
+	.p17-form-theme-default :global(.p17-input-slider),
+	.p17-form-theme-default :global(.p17-input-slider:focus),
+	.p17-form-theme-default :global(.p17-field-valid .p17-input-slider),
+	.p17-form-theme-default :global(.p17-field-invalid .p17-input-slider),
+	.p17-form-theme-default :global(.p17-field-not-validated .p17-input-slider) {
 		width: 100%;
+		outline: none;
+		border: none;
+		background: transparent;
+	}
+
+	.p17-form-theme-default :global(.p17-input-slider::-moz-range-track),
+	.p17-form-theme-default
+		:global(.p17-input-slider::-webkit-slider-runnable-track) {
+		border-radius: 99rem;
+		height: 0.6rem;
+		background: var(--light-color-input);
+		border: 1px solid var(--light-color-input-focus);
+	}
+
+	.p17-form-theme-default
+		:global(.p17-field-valid .p17-input-slider::-moz-range-track),
+	.p17-form-theme-default
+		:global(.p17-field-valid .p17-input-slider::-webkit-slider-runnable-track) {
+		background: var(--light-color-input-valid);
+	}
+
+	.p17-form-theme-default
+		:global(.p17-field-invalid .p17-input-slider::-moz-range-track),
+	.p17-form-theme-default
+		:global(
+			.p17-field-invalid .p17-input-slider::-webkit-slider-runnable-track
+		) {
+		background: var(--light-color-input-error);
+	}
+
+	.p17-form-theme-default :global(.p17-input-slider::-moz-range-thumb),
+	.p17-form-theme-default :global(.p17-input-slider::-webkit-slider-thumb) {
+		border-radius: 100%;
+		width: 1.5rem;
+		height: 1.5rem;
+		background: #85a2da;
+		border: 0.2rem solid #4a4a4a;
+	}
+
+	.p17-form-theme-default
+		:global(.p17-field-valid .p17-input-slider::-moz-range-thumb),
+	.p17-form-theme-default
+		:global(.p17-field-valid .p17-input-slider::-webkit-slider-thumb) {
+		background: #75c84a;
+	}
+
+	.p17-form-theme-default
+		:global(.p17-field-invalid .p17-input-slider::-moz-range-thumb),
+	.p17-form-theme-default
+		:global(.p17-field-invalid .p17-input-slider::-webkit-slider-thumb) {
+		background: #da9888;
 	}
 
 	.p17-form-theme-default :global(.p17-output-slider) {
@@ -388,8 +468,12 @@
 		border-radius: 0.25rem;
 		cursor: pointer;
 
-		color: var(--color-button);
-		background-color: var(--color-button-bg);
+		background-color: #cacaca;
+		box-shadow: 0 0 2px 1px;
+	}
+
+	.p17-form-theme-default :global(.p17-button:active) {
+		box-shadow: inset 0 0 4px 1px;
 	}
 
 	.p17-form-theme-default :global(.p17-button-populate) {
@@ -399,8 +483,7 @@
 	}
 
 	.p17-form-theme-default :global(.p17-button-submit) {
-		color: var(--color-button-submit);
-		background-color: var(--color-button-submit-bg);
+		background-color: #b1e099;
 	}
 
 	/* **** **** */

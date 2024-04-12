@@ -7,6 +7,13 @@
 	const field = getContext('p17-field')
 	const values = getContext('p17-values')
 	const errors = getContext('p17-errors')
+
+	const uncheckIfChecked = (event) => {
+		if (event.target.checked && event.target.value === $values[field.name]) {
+			event.target.checked = false
+			$values[field.name] = ''
+		}
+	}
 </script>
 
 <Group>
@@ -23,6 +30,7 @@
 					aria-describedby={field.hintElementId}
 					value={option.value}
 					bind:group={$values[field.name]}
+					on:click={uncheckIfChecked}
 					on:blur
 					on:focus
 					on:focusin

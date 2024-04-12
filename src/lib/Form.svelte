@@ -36,9 +36,3 @@
 		<slot />
 	</ThemeDefault>
 </form>
-
-<style>
-	.p17-form {
-		width: 100%;
-	}
-</style>

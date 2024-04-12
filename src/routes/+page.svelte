@@ -34,7 +34,7 @@
 						field_tel_national: '07890123456',
 						field_url: 'https://example.com/path',
 						field_password: 'password',
-						field_checkbox: true,
+						field_checkbox: 'true',
 						field_checkbox_group: 'alice,charlie',
 						field_radio_group: 'bob',
 						field_slider: '8',
@@ -129,7 +129,8 @@
 			label="Checkbox"
 			name="field_checkbox"
 			hint="type = 'checkbox'"
-			validate={(v) => (!v ? 'Please tick the box to continue.' : '')} />
+			validate={(v) =>
+				v !== 'true' ? 'Please tick the box to continue.' : ''} />
 		<Field
 			type="checkboxgroup"
 			label="Checkbox Group"
@@ -157,10 +158,14 @@
 			label="Slider or Range"
 			name="field_slider"
 			hint="type = 'slider'<br/>Standard attributes min, max, and step should be used as configuration."
-			value="0"
+			value="-16"
 			min="-20"
 			max="20"
-			step="2" />
+			step="2"
+			validate={(v) =>
+				v < -10 || v > 10
+					? 'Range must be greater than of equal to -10 and less than or equal to 10.'
+					: ''} />
 		<ButtonSubmit class="bottom-submit-button" />
 		<DebugFormPrinter />
 		<DebugFormTable />
@@ -182,6 +187,7 @@
 	.button-bar {
 		display: flex;
 		column-gap: 1rem;
+		margin: 0 0.6rem;
 	}
 
 	:global(.bottom-submit-button) {

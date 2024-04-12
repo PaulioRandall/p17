@@ -9,8 +9,21 @@
 	const values = getContext('p17-values')
 	const errors = getContext('p17-errors')
 
-	let checked = field.initValue
+	const isChecked = (v) => {
+		return v === true || v === 'true'
+	}
+
+	const updateChecked = () => {
+		const newer = isChecked($values[field.name])
+		if (checked !== newer) {
+			// Avoid cyclic reactivity
+			checked = newer
+		}
+	}
+
+	let checked = isChecked(field.initValue)
 	$: $values[field.name] = checked.toString()
+	$: updateChecked($values[field.name])
 </script>
 
 <Hint />
