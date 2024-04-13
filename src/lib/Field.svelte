@@ -1,21 +1,21 @@
 <script>
 	import { onDestroy, getContext, setContext } from 'svelte'
-	import { randomId } from './shared'
+	import { randomId } from './private/shared'
 
-	import FieldHidden from './FieldHidden.svelte'
-	import FieldContainer from './FieldContainer.svelte'
+	import FieldHidden from './private/FieldHidden.svelte'
+	import FieldContainer from './private/FieldContainer.svelte'
 
-	import FieldText from './FieldText.svelte'
-	import FieldSearch from './FieldSearch.svelte'
-	import FieldNumber from './FieldNumber.svelte'
-	import FieldEmail from './FieldEmail.svelte'
-	import FieldTelephone from './FieldTelephone.svelte'
-	import FieldUrl from './FieldUrl.svelte'
-	import FieldPassword from './FieldPassword.svelte'
-	import FieldCheckbox from './FieldCheckbox.svelte'
-	import FieldCheckboxGroup from './FieldCheckboxGroup.svelte'
-	import FieldRadioGroup from './FieldRadioGroup.svelte'
-	import FieldSlider from './FieldSlider.svelte'
+	import FieldText from './private/FieldText.svelte'
+	import FieldSearch from './private/FieldSearch.svelte'
+	import FieldNumber from './private/FieldNumber.svelte'
+	import FieldEmail from './private/FieldEmail.svelte'
+	import FieldTelephone from './private/FieldTelephone.svelte'
+	import FieldUrl from './private/FieldUrl.svelte'
+	import FieldPassword from './private/FieldPassword.svelte'
+	import FieldCheckbox from './private/FieldCheckbox.svelte'
+	import FieldCheckboxGroup from './private/FieldCheckboxGroup.svelte'
+	import FieldRadioGroup from './private/FieldRadioGroup.svelte'
+	import FieldSlider from './private/FieldSlider.svelte'
 
 	const fields = getContext('p17-fields')
 	const values = getContext('p17-values')

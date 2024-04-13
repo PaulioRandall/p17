@@ -1,9 +1,9 @@
 <script>
 	import { getContext } from 'svelte'
 
-	import Label from './Label.svelte'
-	import Hint from './Hint.svelte'
-	import Error from './Error.svelte'
+	import Label from '../Label.svelte'
+	import Hint from '../Hint.svelte'
+	import Error from '../Error.svelte'
 
 	export let integer = false
 	export let leadzeros = false

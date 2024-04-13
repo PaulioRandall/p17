@@ -1,9 +1,9 @@
 <script>
 	import { getContext } from 'svelte'
 
-	import Label from './Label.svelte'
-	import Hint from './Hint.svelte'
-	import Error from './Error.svelte'
+	import Label from '../Label.svelte'
+	import Hint from '../Hint.svelte'
+	import Error from '../Error.svelte'
 
 	const field = getContext('p17-field')
 	const values = getContext('p17-values')

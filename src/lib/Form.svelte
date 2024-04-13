@@ -1,7 +1,7 @@
 <script>
 	import { setContext } from 'svelte'
 	import { writable } from 'svelte/store'
-	import { randomId } from './shared'
+	import { randomId } from './private/shared'
 	import ThemeDefault from './ThemeDefault.svelte'
 
 	export const fields = writable({})

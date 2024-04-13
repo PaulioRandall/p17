@@ -1,43 +1,16 @@
 <script>
 	import { getContext } from 'svelte'
 
-	import Label from './Label.svelte'
-	import Hint from './Hint.svelte'
-	import Error from './Error.svelte'
+	import Label from '../Label.svelte'
+	import Hint from '../Hint.svelte'
+	import Error from '../Error.svelte'
 
 	const field = getContext('p17-field')
 	const values = getContext('p17-values')
 	const errors = getContext('p17-errors')
 
-	const defaultFormat = (v) => {
-		v = v.trim()
-
-		const url = tryParseUrl(v)
-		return url ? url : v
-	}
-
-	const defaultValidate = (v) => {
-		if (!v || tryParseUrl(v)) {
-			return ''
-		}
-		return `Invalid URL. Ensure a URL scheme is prefixed, e.g. 'https://'`
-	}
-
-	const tryParseUrl = (v) => {
-		try {
-			const url = new URL(v)
-			return url.href
-		} catch (e) {
-			return null
-		}
-	}
-
 	$: if (field.format === undefined) {
-		field.format = defaultFormat
-	}
-
-	$: if (field.validate === undefined) {
-		field.validate = defaultValidate
+		field.format = (v) => v.trim()
 	}
 </script>
 
@@ -45,7 +18,8 @@
 <Hint />
 <input
 	class:p17-input={true}
-	class:p17-input-url={true}
+	class:p17-input-text={true}
+	type="search"
 	id={field.inputElementId}
 	name={field.name}
 	aria-describedby={field.hintElementId}

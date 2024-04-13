@@ -1,6 +1,6 @@
 <script>
 	import { getContext } from 'svelte'
-	import { getErrorState } from './shared'
+	import { getErrorState } from './private/shared'
 
 	const field = getContext('p17-field')
 	const values = getContext('p17-values')

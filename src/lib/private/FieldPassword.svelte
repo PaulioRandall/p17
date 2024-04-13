@@ -1,25 +1,21 @@
 <script>
 	import { getContext } from 'svelte'
 
-	import Label from './Label.svelte'
-	import Hint from './Hint.svelte'
-	import Error from './Error.svelte'
+	import Label from '../Label.svelte'
+	import Hint from '../Hint.svelte'
+	import Error from '../Error.svelte'
 
 	const field = getContext('p17-field')
 	const values = getContext('p17-values')
 	const errors = getContext('p17-errors')
-
-	$: if (field.format === undefined) {
-		field.format = (v) => v.trim()
-	}
 </script>
 
 <Label />
 <Hint />
 <input
 	class:p17-input={true}
-	class:p17-input-text={true}
-	type="search"
+	class:p17-input-password={true}
+	type="password"
 	id={field.inputElementId}
 	name={field.name}
 	aria-describedby={field.hintElementId}

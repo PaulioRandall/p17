@@ -2,35 +2,50 @@
 	import { getContext } from 'svelte'
 
 	import Group from './Group.svelte'
-	import Label from './Label.svelte'
+	import Label from '../Label.svelte'
 
 	const field = getContext('p17-field')
 	const values = getContext('p17-values')
 	const errors = getContext('p17-errors')
 
-	const uncheckIfChecked = (event) => {
-		if (event.target.checked && event.target.value === $values[field.name]) {
-			event.target.checked = false
-			$values[field.name] = ''
+	let checked = {}
+	const updateChecked = () => {
+		const v = $values[field.name]
+		checked = {}
+
+		if (!v) {
+			return
+		}
+
+		const list = v.split(',')
+		for (const f of field.options) {
+			checked[f.value] = !!list.includes(f.value)
 		}
 	}
+
+	$: $values[field.name] = Object.entries(checked) //
+		.filter(([k, v]) => !!v) //
+		.map(([k, v]) => k)
+		.join(',')
+
+	$: updateChecked($values[field.name])
 </script>
 
 <Group>
 	{#if field.options}
 		{#each field.options as option, i (option.value)}
 			{@const optionId = `${field.inputElementId}-${i}`}
-			<div class="p17-container-radiogroup">
+			<div class="p17-container-checkboxgroup">
 				<input
 					class:p17-input={true}
-					class:p17-input-radiogroup={true}
-					type="radio"
+					class:p17-input-checkboxgroup={true}
+					type="checkbox"
 					id={optionId}
 					name={field.name}
 					aria-describedby={field.hintElementId}
-					value={option.value}
-					bind:group={$values[field.name]}
-					on:click={uncheckIfChecked}
+					aria-errormessage={field.errorElementId}
+					aria-invalid={!!$errors[field.name]}
+					bind:checked={checked[option.value]}
 					on:blur
 					on:focus
 					on:focusin
@@ -49,7 +64,7 @@
 					on:touchend
 					on:touchstart
 					{...$$restProps} />
-				<label for={optionId} class="p17-label p17-label-radiogroup">
+				<label for={optionId} class="p17-label p17-label-checkboxgroup">
 					{option.label}
 				</label>
 			</div>
