@@ -186,7 +186,8 @@
 
 	.button-bar {
 		display: flex;
-		column-gap: 1rem;
+		flex-wrap: wrap;
+		gap: 1rem;
 		margin: 0;
 	}
 

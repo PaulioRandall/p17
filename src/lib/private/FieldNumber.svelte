@@ -36,7 +36,7 @@
 	]
 
 	const numbersOnly = (event) => {
-		if (!event.preventDefault) {
+		if (!event.preventDefault || !event.key) {
 			return
 		}
 
