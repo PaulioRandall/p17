@@ -15,8 +15,8 @@
 
 	const updateChecked = () => {
 		const newer = isChecked($values[field.name])
+		// Avoid cyclic reactivity
 		if (checked !== newer) {
-			// Avoid cyclic reactivity
 			checked = newer
 		}
 	}

@@ -10,11 +10,6 @@
 	}
 
 	.p17-form-theme-default {
-		/*
-			There's no requirement to use CSS variables.
-			Specify colors directly if that's what you prefer.
-		*/
-
 		color: #101010;
 		font-family: sans-serif, Arial, Helvetica;
 
@@ -22,29 +17,6 @@
 		--light-color-input-valid: #cfecc1;
 		--light-color-input-error: #f2dbd5;
 		--light-color-input-focus: #345dab;
-
-		--color-button: #202020;
-		--color-button-bg: #c8c8c8;
-
-		--color-button-submit: #202020;
-		--color-button-submit-bg: #80d080;
-
-		--dark-color-field-not-validated: #103060;
-		--dark-color-field-invalid: #351010;
-		--dark-color-field-valid: #104810;
-
-		--dark-color-label: #d0d0d0;
-		--dark-color-hint: #c0c0c0;
-		--dark-color-error: #f08080;
-		--dark-color-input-bg: #404040;
-		--dark-color-input-border: #a0a0a0;
-		--dark-color-input-placeholder: #d0d0d0;
-
-		--dark-color-button: #101010;
-		--dark-color-button-bg: #909090;
-
-		--dark-color-button-submit: #f0f0f0;
-		--dark-color-button-submit-bg: #105810;
 	}
 
 	/* Generic field components */
@@ -54,11 +26,7 @@
 		flex-direction: column;
 		row-gap: 0.5rem;
 
-		padding: 0 0.5rem;
-		border-radius: 0.25rem;
-		border: 1px solid transparent;
-
-		background: #fff;
+		background: transparent;
 	}
 
 	.p17-form-theme-default :global(.p17-group) {
@@ -105,8 +73,7 @@
 		font-size: 1em;
 		padding: 0.5rem;
 		border-radius: 0.25rem;
-		border: 1px solid transparent;
-		border-color: #909090;
+		border: 1px solid #909090;
 		background-color: var(--light-color-input);
 	}
 
@@ -396,6 +363,10 @@
 		background: transparent;
 	}
 
+	.p17-form-theme-default :global(.p17-input-slider:focus) {
+		outline: 2px solid var(--light-color-input-focus);
+	}
+
 	.p17-form-theme-default :global(.p17-input-slider::-moz-range-track),
 	.p17-form-theme-default
 		:global(.p17-input-slider::-webkit-slider-runnable-track) {
@@ -468,7 +439,7 @@
 		border-radius: 0.25rem;
 		cursor: pointer;
 
-		background-color: #cacaca;
+		background-color: #e6d5ae;
 		box-shadow: 0 0 2px 1px;
 	}
 
@@ -490,23 +461,21 @@
 	/* Dark Mode */
 
 	@media (prefers-color-scheme: dark) {
-		/* Generic field components */
+		.p17-form-theme-default {
+			color: #f0f0f0;
+			font-family: sans-serif, Arial, Helvetica;
+		}
 
 		.p17-form-theme-default :global(.p17-field) {
 		}
 
 		.p17-form-theme-default :global(.p17-field-not-validated) {
-			background: var(--dark-color-field-not-validated);
 		}
 
 		.p17-form-theme-default :global(.p17-field-invalid) {
-			border-color: var(--dark-color-error);
-			background: var(--dark-color-field-invalid);
 		}
 
 		.p17-form-theme-default :global(.p17-field-valid) {
-			border-color: transparent;
-			background: var(--dark-color-field-valid);
 		}
 
 		.p17-form-theme-default :global(.p17-group) {
@@ -516,28 +485,30 @@
 		}
 
 		.p17-form-theme-default :global(.p17-legend) {
-			color: var(--dark-color-label);
 		}
 
 		.p17-form-theme-default :global(.p17-label) {
-			color: var(--dark-color-label);
 		}
 
 		.p17-form-theme-default :global(.p17-hint) {
-			color: var(--dark-color-hint);
+			color: #e0e0e0;
 		}
 
 		.p17-form-theme-default :global(.p17-error) {
-			color: var(--dark-color-error);
+			color: #da878c;
 		}
 
-		.p17-form-theme-default :global(.p17-input) {
-			border-color: var(--dark-color-input-border);
-			background-color: var(--dark-color-input-bg);
+		.p17-form-theme-default :global(.p17-input),
+		.p17-form-theme-default :global(.p17-input:focus) {
+			caret-color: black;
+			color: #101010;
+		}
+
+		.p17-form-theme-default :global(.p17-input:focus) {
+			outline: 3px solid #c03e3a;
 		}
 
 		.p17-form-theme-default :global(.p17-input::placeholder) {
-			color: var(--dark-color-input-placeholder);
 		}
 
 		.p17-form-theme-default :global(.p17-output) {
@@ -670,7 +641,27 @@
 		.p17-form-theme-default :global(.p17-container-checkbox) {
 		}
 
-		.p17-form-theme-default :global(.p17-input-checkbox) {
+		.p17-form-theme-default :global(.p17-input-checkbox),
+		.p17-form-theme-default :global(.p17-input-checkboxgroup),
+		.p17-form-theme-default :global(.p17-input-radiogroup) {
+			border: none;
+		}
+
+		.p17-form-theme-default :global(.p17-input-checkbox:checked:after),
+		.p17-form-theme-default :global(.p17-input-checkboxgroup:checked:after),
+		.p17-form-theme-default :global(.p17-input-radiogroup:checked:after) {
+			position: absolute;
+			content: '\2714';
+			font-size: 2.1rem;
+			top: -0.4rem;
+			left: -0.1rem;
+			color: #404040;
+		}
+
+		.p17-form-theme-default :global(.p17-input-radiogroup:checked:after) {
+			font-size: 2rem;
+			top: -0.3rem;
+			left: -0.05rem;
 		}
 
 		.p17-form-theme-default :global(.p17-label-checkbox) {
@@ -759,6 +750,11 @@
 
 		/* Submit button */
 
+		.p17-form-theme-default :global(.p17-button) {
+			color: #101010;
+			background-color: #87cada;
+		}
+
 		.p17-form-theme-default :global(.p17-button-reset) {
 		}
 
@@ -766,8 +762,7 @@
 		}
 
 		.p17-form-theme-default :global(.p17-button-submit) {
-			color: var(--dark-color-button-submit);
-			background-color: var(--dark-color-button-submit-bg);
+			background-color: #b1e099;
 		}
 	}
 </style>

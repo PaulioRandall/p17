@@ -187,7 +187,7 @@
 	.button-bar {
 		display: flex;
 		column-gap: 1rem;
-		margin: 0 0.6rem;
+		margin: 0;
 	}
 
 	:global(.bottom-submit-button) {
