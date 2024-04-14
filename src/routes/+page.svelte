@@ -26,12 +26,9 @@
 						field_text: 'Text',
 						field_search: 'Query',
 						field_number: '123.456',
-						field_number_integer: '123',
-						field_number_leadzeros: '0123',
-						field_number_multipoint: '123.456.789',
+						field_integer: '123',
 						field_email: 'name@example.com',
 						field_tel: '+77890123456',
-						field_tel_national: '07890123456',
 						field_url: 'https://example.com/path',
 						field_password: 'password',
 						field_checkbox: 'true',
@@ -51,45 +48,27 @@
 			name="field_text"
 			hint="type = 'text'"
 			placeholder="Text"
-			validate={(v) => (!v ? 'Please provide some text.' : '')} />
+			validate={(v) => (!v ? 'Text is required.' : '')} />
 		<Field
 			type="search"
 			label="Search"
 			name="field_search"
 			hint="type = 'search'"
 			placeholder="Query"
-			validate={(v) => (!v ? 'Please provide some query text.' : '')} />
+			validate={(v) => (!v ? 'Query is required.' : '')} />
 		<Field
 			type="number"
 			label="Number"
 			name="field_number"
 			hint="type = 'number'<br/>Field specific props: [integer, leadzeros, multipoint]<br/>The default formatter will append and prepend a zero to a leading and trailing decimal points respectively. This can be changed by passing null or a custom format function to the 'format' prop."
-			placeholder="123.456"
-			validate={(v) => (!v ? 'Please provide a number.' : '')} />
+			placeholder="123.456" />
 		<Field
 			integer
-			type="number"
-			label="Number (Integer)"
-			name="field_number_integer"
-			hint="type = 'number'<br/>With prop: 'integer'"
-			placeholder="123"
-			validate={(v) => (!v ? 'Please provide an integer.' : '')} />
-		<Field
-			leadzeros
-			type="number"
-			label="Number (Allows leading Zeros)"
-			name="field_number_leadzeros"
-			hint="type = 'number'<br/>With prop: 'leadzeros'"
-			placeholder="0123"
-			validate={(v) => (!v ? 'Please provide a number.' : '')} />
-		<Field
-			multipoint
-			type="number"
-			label="Number (Allows multiple decimal points)"
-			name="field_number_multipoint"
-			hint="type = 'number'<br/>With prop: 'multipoint'"
-			placeholder="123.456.789"
-			validate={(v) => (!v ? 'Please provide a number.' : '')} />
+			type="integer"
+			label="Integer"
+			name="field_integer"
+			hint="type = 'int' | 'integer'"
+			placeholder="123" />
 		<Field
 			type="email"
 			label="Email"
@@ -101,17 +80,7 @@
 			label="Telephone"
 			name="field_tel"
 			hint="type = 'tel' | 'phone' | 'telephone'<br/>Field specific props: ['national']<br/>'+' may be prefixed for internationalisation."
-			placeholder="+77890123456"
-			validate={(v) => (!v ? 'Please provide a telephone number.' : '')} />
-		<Field
-			national
-			type="tel"
-			label="Telephone (National only)"
-			name="field_tel_national"
-			hint="type = 'tel' | 'phone' | 'telephone'<br/>With prop: 'national'"
-			placeholder="07890123456"
-			validate={(v) =>
-				!v ? 'Please provide a national telephone number.' : ''} />
+			placeholder="+77890123456" />
 		<Field
 			type="url"
 			label="URL"

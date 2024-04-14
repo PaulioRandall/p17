@@ -2,10 +2,15 @@ import {
 	defaultTextFormat, //
 	defaultNumberFormat,
 	defaultTelFormat,
+	defaultUrlFormat,
 } from './formatters'
 
 import {
-	defaultEmailValidate, //
+	defaultNumberValidate, //
+	defaultIntegerValidate,
+	defaultEmailValidate,
+	defaultInternationalTelValidate,
+	defaultUrlValidate,
 } from './validators'
 
 // metatypes holds info about each P17 types, importantly the mapping between
@@ -33,7 +38,21 @@ export default {
 		inputMode: 'numeric',
 		outputType: 'string',
 		defaultFormat: defaultNumberFormat,
-		defaultValidate: null,
+		defaultValidate: defaultNumberValidate,
+	},
+	int: {
+		inputType: 'text',
+		inputMode: 'numeric',
+		outputType: 'string',
+		defaultFormat: defaultNumberFormat,
+		defaultValidate: defaultIntegerValidate,
+	},
+	integer: {
+		inputType: 'text',
+		inputMode: 'numeric',
+		outputType: 'string',
+		defaultFormat: defaultNumberFormat,
+		defaultValidate: defaultIntegerValidate,
 	},
 	email: {
 		inputType: 'email',
@@ -47,35 +66,35 @@ export default {
 		inputMode: 'tel',
 		outputType: 'string',
 		defaultFormat: defaultTelFormat,
-		defaultValidate: null,
+		defaultValidate: defaultInternationalTelValidate,
 	},
 	phone: {
 		inputType: 'tel',
 		inputMode: 'tel',
 		outputType: 'string',
 		defaultFormat: defaultTelFormat,
-		defaultValidate: null,
+		defaultValidate: defaultInternationalTelValidate,
 	},
 	telephone: {
 		inputType: 'tel',
 		inputMode: 'tel',
 		outputType: 'string',
 		defaultFormat: defaultTelFormat,
-		defaultValidate: null,
+		defaultValidate: defaultInternationalTelValidate,
 	},
 	url: {
 		inputType: 'url',
 		inputMode: 'url',
 		outputType: 'string',
-		defaultFormat: defaultTextFormat,
-		defaultValidate: null,
+		defaultFormat: defaultUrlFormat,
+		defaultValidate: defaultUrlValidate,
 	},
 	link: {
 		inputType: 'url',
 		inputMode: 'url',
 		outputType: 'string',
-		defaultFormat: defaultTextFormat,
-		defaultValidate: null,
+		defaultFormat: defaultUrlFormat,
+		defaultValidate: defaultUrlValidate,
 	},
 	password: {
 		inputType: 'password',

@@ -5,7 +5,7 @@
 	import Hint from '../Hint.svelte'
 	import Error from '../Error.svelte'
 
-	import metatypes from './metatypes'
+	import metatypes from '../metatypes'
 
 	const field = getContext('p17-field')
 	const values = getContext('p17-values')
@@ -32,11 +32,27 @@
 			return
 		}
 
-		if (isRealValue(v) && metatype.outputType === 'string') {
-			v = v.toString()
+		if (isRealValue(v)) {
+			v = convertType(v)
 		}
 
 		$values[field.name] = v
+	}
+
+	const convertType = (v) => {
+		if (metatype.outputType === 'string') {
+			return v.toString()
+		}
+
+		if (metatype.outputType === 'bool' || metatype.outputType === 'boolean') {
+			return !!v
+		}
+
+		if (metatype.outputType === 'number') {
+			return Number(v)
+		}
+
+		return v
 	}
 
 	const isRealValue = (v) => {
@@ -53,11 +69,11 @@
 		delete $$restProps.class
 	}
 
-	if (field.format === undefined && metatype.defaultFormat) {
+	if (field.format === undefined) {
 		field.format = metatype.defaultFormat
 	}
 
-	if (field.validate === undefined && metatype.defaultValidate) {
+	if (field.validate === undefined) {
 		field.validate = metatype.defaultValidate
 	}
 

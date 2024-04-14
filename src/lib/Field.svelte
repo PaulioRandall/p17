@@ -2,18 +2,14 @@
 	import { onDestroy, getContext, setContext } from 'svelte'
 	import { randomId } from './private/shared'
 
-	import FieldHidden from './private/FieldHidden.svelte'
 	import FieldContainer from './private/FieldContainer.svelte'
 
+	import HiddenInput from './private/HiddenInput.svelte'
 	import TextualInput from './private/TextualInput.svelte'
-	import FieldNumber from './private/FieldNumber.svelte'
-	import FieldEmail from './private/FieldEmail.svelte'
-	import FieldTelephone from './private/FieldTelephone.svelte'
-	import FieldUrl from './private/FieldUrl.svelte'
-	import FieldCheckbox from './private/FieldCheckbox.svelte'
-	import FieldCheckboxGroup from './private/FieldCheckboxGroup.svelte'
-	import FieldRadioGroup from './private/FieldRadioGroup.svelte'
-	import FieldSlider from './private/FieldSlider.svelte'
+	import CheckboxInput from './private/CheckboxInput.svelte'
+	import CheckboxGroupInput from './private/CheckboxGroupInput.svelte'
+	import RadioGroupInput from './private/RadioGroupInput.svelte'
+	import SliderInput from './private/SliderInput.svelte'
 
 	const fields = getContext('p17-fields')
 	const values = getContext('p17-values')
@@ -61,32 +57,37 @@
 		delete $errors[name]
 	})
 
-	const textualTypes = ['text', 'search', 'number', 'password', 'sensitive']
+	const textualTypes = [
+		'text', //
+		'search',
+		'number',
+		'int',
+		'integer',
+		'email',
+		'tel',
+		'phone',
+		'telephone',
+		'url',
+		'password',
+		'sensitive',
+	]
 </script>
 
 {#if field.type === 'hidden'}
-	<FieldHidden {...$$restProps} />
+	<HiddenInput {...$$restProps} />
 {:else}
 	<FieldContainer>
 		<slot name="first" />
 		{#if textualTypes.includes(type)}
 			<TextualInput {...$$restProps} />
-		{:else if type === 'number'}
-			<FieldNumber {...$$restProps} />
-		{:else if type === 'email'}
-			<FieldEmail {...$$restProps} />
-		{:else if type === 'tel' || type === 'phone' || type === 'telephone'}
-			<FieldTelephone {...$$restProps} />
-		{:else if type === 'url' || type === 'link'}
-			<FieldUrl {...$$restProps} />
 		{:else if type === 'checkbox'}
-			<FieldCheckbox {...$$restProps} />
+			<CheckboxInput {...$$restProps} />
 		{:else if type === 'checkboxgroup'}
-			<FieldCheckboxGroup {...$$restProps} />
+			<CheckboxGroupInput {...$$restProps} />
 		{:else if type === 'radiogroup'}
-			<FieldRadioGroup {...$$restProps} />
+			<RadioGroupInput {...$$restProps} />
 		{:else if type === 'slider' || type === 'range'}
-			<FieldSlider {...$$restProps} />
+			<SliderInput {...$$restProps} />
 		{:else if type === 'custom'}
 			<slot {...$$restProps} />
 		{/if}

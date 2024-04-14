@@ -20,3 +20,18 @@ export const defaultTelFormat = (v) => {
 	v = v.trim()
 	return v.replace(/\s/g, '')
 }
+
+export const defaultUrlFormat = (v) => {
+	v = v.trim()
+	const url = tryParseUrl(v)
+	return url ? url : v
+}
+
+const tryParseUrl = (v) => {
+	try {
+		const url = new URL(v)
+		return url.href
+	} catch (e) {
+		return null
+	}
+}
