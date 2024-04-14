@@ -5,13 +5,11 @@
 	import FieldHidden from './private/FieldHidden.svelte'
 	import FieldContainer from './private/FieldContainer.svelte'
 
-	import FieldText from './private/FieldText.svelte'
-	import FieldSearch from './private/FieldSearch.svelte'
+	import TextualInput from './private/TextualInput.svelte'
 	import FieldNumber from './private/FieldNumber.svelte'
 	import FieldEmail from './private/FieldEmail.svelte'
 	import FieldTelephone from './private/FieldTelephone.svelte'
 	import FieldUrl from './private/FieldUrl.svelte'
-	import FieldPassword from './private/FieldPassword.svelte'
 	import FieldCheckbox from './private/FieldCheckbox.svelte'
 	import FieldCheckboxGroup from './private/FieldCheckboxGroup.svelte'
 	import FieldRadioGroup from './private/FieldRadioGroup.svelte'
@@ -62,6 +60,8 @@
 		delete $values[name]
 		delete $errors[name]
 	})
+
+	const textualTypes = ['text', 'search', 'number', 'password', 'sensitive']
 </script>
 
 {#if field.type === 'hidden'}
@@ -69,10 +69,8 @@
 {:else}
 	<FieldContainer>
 		<slot name="first" />
-		{#if type === 'text'}
-			<FieldText {...$$restProps} />
-		{:else if type === 'search'}
-			<FieldSearch {...$$restProps} />
+		{#if textualTypes.includes(type)}
+			<TextualInput {...$$restProps} />
 		{:else if type === 'number'}
 			<FieldNumber {...$$restProps} />
 		{:else if type === 'email'}
@@ -81,8 +79,6 @@
 			<FieldTelephone {...$$restProps} />
 		{:else if type === 'url' || type === 'link'}
 			<FieldUrl {...$$restProps} />
-		{:else if type === 'password' || type === 'sensitive'}
-			<FieldPassword {...$$restProps} />
 		{:else if type === 'checkbox'}
 			<FieldCheckbox {...$$restProps} />
 		{:else if type === 'checkboxgroup'}

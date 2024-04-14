@@ -120,7 +120,7 @@
 			placeholder="https://example.com/path" />
 		<Field
 			type="password"
-			label="Password"
+			label="Password or Sensitive"
 			name="field_password"
 			hint="type = 'password' | 'sensitive'"
 			validate={(v) => (!v ? 'Please provide a password.' : '')} />
