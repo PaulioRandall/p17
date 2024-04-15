@@ -100,7 +100,13 @@
 	.p17-form-theme-default :global(.p17-input-checkbox),
 	.p17-form-theme-default :global(.p17-input-checkboxgroup),
 	.p17-form-theme-default :global(.p17-input-radiogroup) {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		-o-appearance: none;
 		appearance: none;
+		margin: 0;
+		padding: 0;
+
 		position: relative;
 
 		width: 1.6rem;
@@ -136,9 +142,12 @@
 	.p17-form-theme-default :global(.p17-input-checkboxgroup:checked:after),
 	.p17-form-theme-default :global(.p17-input-radiogroup:checked:after) {
 		position: absolute;
-		top: 0;
-		left: 50%;
-		transform: translateX(-20%) translateY(-5%) scale(250%);
+		top: 20%;
+		left: 90%;
+		transform: scale(275%);
+
+		width: 1.6rem;
+		height: 1.6rem;
 
 		content: '\2714';
 		color: #606060;
