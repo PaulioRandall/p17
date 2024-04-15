@@ -93,7 +93,7 @@
 	.p17-form-theme-default :global(.p17-container-checkboxgroup),
 	.p17-form-theme-default :global(.p17-container-radiogroup) {
 		display: flex;
-		column-gap: 0.5rem;
+		column-gap: 0.6rem;
 		align-items: center;
 	}
 
@@ -104,6 +104,8 @@
 		-moz-appearance: none;
 		-o-appearance: none;
 		appearance: none;
+
+		display: block;
 		margin: 0;
 		padding: 0;
 
@@ -141,13 +143,15 @@
 	.p17-form-theme-default :global(.p17-input-checkbox:checked:after),
 	.p17-form-theme-default :global(.p17-input-checkboxgroup:checked:after),
 	.p17-form-theme-default :global(.p17-input-radiogroup:checked:after) {
+		display: block;
+
 		position: absolute;
-		top: 20%;
-		left: 90%;
+		bottom: -0.2rem;
+		right: -1.3rem;
 		transform: scale(275%);
 
-		width: 1.6rem;
-		height: 1.6rem;
+		width: 100%;
+		height: 100%;
 
 		content: '\2714';
 		color: #606060;
