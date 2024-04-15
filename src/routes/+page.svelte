@@ -60,7 +60,7 @@
 			type="number"
 			label="Number"
 			name="field_number"
-			hint="type = 'number'<br/>Field specific props: [integer, leadzeros, multipoint]<br/>The default formatter will append and prepend a zero to a leading and trailing decimal points respectively. This can be changed by passing null or a custom format function to the 'format' prop."
+			hint="type = 'number'"
 			placeholder="123.456" />
 		<Field
 			integer
@@ -79,7 +79,7 @@
 			type="tel"
 			label="Telephone"
 			name="field_tel"
-			hint="type = 'tel' | 'phone' | 'telephone'<br/>Field specific props: ['national']<br/>'+' may be prefixed for internationalisation."
+			hint="type = 'tel' | 'phone' | 'telephone'"
 			placeholder="+77890123456" />
 		<Field
 			type="url"

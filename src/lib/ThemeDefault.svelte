@@ -100,21 +100,13 @@
 	.p17-form-theme-default :global(.p17-input-checkbox),
 	.p17-form-theme-default :global(.p17-input-checkboxgroup),
 	.p17-form-theme-default :global(.p17-input-radiogroup) {
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		-o-appearance: none;
-		appearance: none;
+		display: block;
 
 		margin: 0;
 		padding: 0;
 
-		position: relative;
-
 		width: 1.6rem;
 		height: 1.6rem;
-
-		background-color: #d4def2;
-		border-radius: 4px;
 
 		cursor: pointer;
 	}
@@ -137,31 +129,6 @@
 	.p17-form-theme-default
 		:global(.p17-field-invalid .p17-input-radiogroup:active) {
 		background-color: #f2dbd5;
-	}
-
-	.p17-form-theme-default :global(.p17-input-checkbox:checked:after),
-	.p17-form-theme-default :global(.p17-input-checkboxgroup:checked:after),
-	.p17-form-theme-default :global(.p17-input-radiogroup:checked:after) {
-		position: absolute;
-		top: -1.2rem;
-		left: 0rem;
-
-		font-size: 2.8rem;
-
-		content: '\2714';
-		color: #606060;
-	}
-
-	@supports (-moz-appearance: none) {
-		.p17-form-theme-default :global(.p17-input-checkbox:checked:after),
-		.p17-form-theme-default :global(.p17-input-checkboxgroup:checked:after),
-		.p17-form-theme-default :global(.p17-input-radiogroup:checked:after) {
-			top: -1.2rem;
-			left: 0rem;
-
-			font-size: 2.8rem;
-			content: '\2714';
-		}
 	}
 
 	.p17-form-theme-default :global(.p17-container-slider) {
