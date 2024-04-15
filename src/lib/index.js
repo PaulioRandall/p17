@@ -12,7 +12,6 @@ export { default as Hint } from './Hint.svelte'
 export { default as Error } from './Error.svelte'
 
 export { default as ThemeDefault } from './ThemeDefault.svelte'
-export { default as ThemeYellow } from './ThemeYellow.svelte'
 
 export { default as DebugFormTable } from './DebugFormTable.svelte'
 export { default as DebugFormPrinter } from './DebugFormPrinter.svelte'

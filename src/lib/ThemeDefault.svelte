@@ -107,7 +107,6 @@
 		height: 1.6rem;
 
 		background-color: #d4def2;
-		padding: 2px;
 		border-radius: 4px;
 
 		cursor: pointer;
@@ -137,10 +136,11 @@
 	.p17-form-theme-default :global(.p17-input-checkboxgroup:checked:after),
 	.p17-form-theme-default :global(.p17-input-radiogroup:checked:after) {
 		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-20%) translateY(-5%) scale(250%);
+
 		content: '\2714';
-		font-size: 2.2rem;
-		top: -1.2rem;
-		left: 0.1rem;
 		color: #606060;
 	}
 
