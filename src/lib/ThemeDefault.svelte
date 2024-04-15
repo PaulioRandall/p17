@@ -105,7 +105,6 @@
 		-o-appearance: none;
 		appearance: none;
 
-		display: block;
 		margin: 0;
 		padding: 0;
 
@@ -143,18 +142,26 @@
 	.p17-form-theme-default :global(.p17-input-checkbox:checked:after),
 	.p17-form-theme-default :global(.p17-input-checkboxgroup:checked:after),
 	.p17-form-theme-default :global(.p17-input-radiogroup:checked:after) {
-		display: block;
-
 		position: absolute;
-		bottom: -0.2rem;
-		right: -1.3rem;
-		transform: scale(275%);
+		top: -1.2rem;
+		left: 0rem;
 
-		width: 100%;
-		height: 100%;
+		font-size: 2.8rem;
 
 		content: '\2714';
 		color: #606060;
+	}
+
+	@supports (-moz-appearance: none) {
+		.p17-form-theme-default :global(.p17-input-checkbox:checked:after),
+		.p17-form-theme-default :global(.p17-input-checkboxgroup:checked:after),
+		.p17-form-theme-default :global(.p17-input-radiogroup:checked:after) {
+			top: -1.2rem;
+			left: 0rem;
+
+			font-size: 2.8rem;
+			content: '\2714';
+		}
 	}
 
 	.p17-form-theme-default :global(.p17-container-slider) {
