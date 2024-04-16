@@ -3,10 +3,14 @@
 
 	import Group from './Group.svelte'
 	import Label from '../Label.svelte'
+	import metatypes from '../metatypes'
 
 	const field = getContext('p17-field')
 	const values = getContext('p17-values')
 	const errors = getContext('p17-errors')
+
+	const metatype = metatypes[field.type]
+	field.metatype = metatype
 
 	let checked = {}
 	const updateChecked = () => {
@@ -21,6 +25,14 @@
 		for (const f of field.options) {
 			checked[f.value] = !!list.includes(f.value)
 		}
+	}
+
+	if (field.format === undefined) {
+		field.format = metatype.defaultFormat
+	}
+
+	if (field.validate === undefined) {
+		field.validate = metatype.defaultValidate
 	}
 
 	$: $values[field.name] = Object.entries(checked) //

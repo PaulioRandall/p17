@@ -3,16 +3,28 @@
 
 	import Group from './Group.svelte'
 	import Label from '../Label.svelte'
+	import metatypes from '../metatypes'
 
 	const field = getContext('p17-field')
 	const values = getContext('p17-values')
 	const errors = getContext('p17-errors')
+
+	const metatype = metatypes[field.type]
+	field.metatype = metatype
 
 	const uncheckIfChecked = (event) => {
 		if (event.target.checked && event.target.value === $values[field.name]) {
 			event.target.checked = false
 			$values[field.name] = ''
 		}
+	}
+
+	if (field.format === undefined) {
+		field.format = metatype.defaultFormat
+	}
+
+	if (field.validate === undefined) {
+		field.validate = metatype.defaultValidate
 	}
 </script>
 

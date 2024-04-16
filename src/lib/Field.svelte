@@ -10,6 +10,7 @@
 	import CheckboxGroupInput from './private/CheckboxGroupInput.svelte'
 	import RadioGroupInput from './private/RadioGroupInput.svelte'
 	import SliderInput from './private/SliderInput.svelte'
+	import SelectInput from './private/SelectInput.svelte'
 
 	const fields = getContext('p17-fields')
 	const values = getContext('p17-values')
@@ -88,6 +89,8 @@
 			<RadioGroupInput {...$$restProps} />
 		{:else if type === 'slider' || type === 'range'}
 			<SliderInput {...$$restProps} />
+		{:else if type === 'select' || type === 'dropdown'}
+			<SelectInput {...$$restProps} />
 		{:else if type === 'custom'}
 			<slot {...$$restProps} />
 		{/if}

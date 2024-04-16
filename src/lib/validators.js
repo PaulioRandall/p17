@@ -47,3 +47,10 @@ const tryParseUrl = (v) => {
 		return null
 	}
 }
+
+export const defaultSelectValidate = (v) => {
+	if (!v) {
+		return 'An option must be selected.'
+	}
+	return ''
+}

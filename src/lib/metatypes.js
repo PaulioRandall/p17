@@ -11,6 +11,7 @@ import {
 	defaultEmailValidate,
 	defaultInternationalTelValidate,
 	defaultUrlValidate,
+	defaultSelectValidate,
 } from './validators'
 
 // metatypes holds info about each P17 types, importantly the mapping between
@@ -144,5 +145,19 @@ export default {
 		outputType: 'string',
 		defaultFormat: null,
 		defaultValidate: null,
+	},
+	select: {
+		inputType: 'select',
+		inputMode: 'none',
+		outputType: 'string',
+		defaultFormat: null,
+		defaultValidate: defaultSelectValidate,
+	},
+	dropdown: {
+		inputType: 'select',
+		inputMode: 'none',
+		outputType: 'string',
+		defaultFormat: null,
+		defaultValidate: defaultSelectValidate,
 	},
 }

@@ -65,6 +65,7 @@
 	}
 
 	.p17-form-theme-default :global(.p17-input) {
+		width: min(20rem, 100%);
 		font-size: 1em;
 		padding: 0.5rem;
 		border-radius: 0.25rem;
@@ -143,7 +144,6 @@
 	.p17-form-theme-default :global(.p17-field-valid .p17-input-slider),
 	.p17-form-theme-default :global(.p17-field-invalid .p17-input-slider),
 	.p17-form-theme-default :global(.p17-field-not-validated .p17-input-slider) {
-		width: 100%;
 		outline: none;
 		border: none;
 		background: transparent;

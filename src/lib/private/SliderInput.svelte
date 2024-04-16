@@ -4,10 +4,14 @@
 	import Label from '../Label.svelte'
 	import Hint from '../Hint.svelte'
 	import Error from '../Error.svelte'
+	import metatypes from '../metatypes'
 
 	const field = getContext('p17-field')
 	const values = getContext('p17-values')
 	const errors = getContext('p17-errors')
+
+	const metatype = metatypes[field.type]
+	field.metatype = metatype
 
 	const calculateOutputWidth = () => {
 		const max = $$restProps.max || 100
@@ -26,17 +30,19 @@
 	onMount(() => {
 		$values[field.name] = element.value
 	})
+
+	if (field.format === undefined) {
+		field.format = metatype.defaultFormat
+	}
+
+	if (field.validate === undefined) {
+		field.validate = metatype.defaultValidate
+	}
 </script>
 
 <Label />
 <Hint />
 <div class="p17-container-slider">
-	<output
-		style="width: {outputWidth};"
-		class="p17-output p17-output-slider"
-		for={field.inputElementId}>
-		{$values[field.name]}
-	</output>
 	<input
 		bind:this={element}
 		class:p17-input={true}
@@ -67,5 +73,11 @@
 		on:touchmove
 		on:touchstart
 		{...$$restProps} />
+	<output
+		style="width: {outputWidth};"
+		class="p17-output p17-output-slider"
+		for={field.inputElementId}>
+		{$values[field.name]}
+	</output>
 </div>
 <Error />

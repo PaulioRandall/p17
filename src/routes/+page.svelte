@@ -35,6 +35,7 @@
 						field_checkbox_group: 'alice,charlie',
 						field_radio_group: 'bob',
 						field_slider: '8',
+						field_select: 'bob',
 					}} />
 				<ButtonReset />
 				<ButtonUnvalidate />
@@ -135,6 +136,16 @@
 				v < -10 || v > 10
 					? 'Range must be greater than of equal to -10 and less than or equal to 10.'
 					: ''} />
+		<Field
+			type="select"
+			label="Select or Dropdown"
+			name="field_select"
+			hint="type = 'select' | 'dropdown'<br/>Field specific props: ['options']"
+			options={[
+				{ label: 'Alice', value: 'alice' },
+				{ label: 'Bob', value: 'bob' },
+				{ label: 'Charlie', value: 'charlie' },
+			]} />
 		<ButtonSubmit class="bottom-submit-button" />
 		<DebugFormPrinter />
 		<DebugFormTable />
