@@ -31,6 +31,10 @@
 		$values[field.name] = element.value
 	})
 
+	const focusOnInput = () => {
+		element.focus()
+	}
+
 	if (field.format === undefined) {
 		field.format = metatype.defaultFormat
 	}
@@ -54,6 +58,7 @@
 		aria-errormessage={field.errorElementId}
 		aria-invalid={!!$errors[field.name]}
 		bind:value={$values[field.name]}
+		on:touchstart={focusOnInput}
 		on:blur
 		on:focus
 		on:focusin
