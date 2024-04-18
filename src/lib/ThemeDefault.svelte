@@ -101,7 +101,8 @@
 	.p17-form-theme-default :global(.p17-input-checkbox),
 	.p17-form-theme-default :global(.p17-input-checkboxgroup),
 	.p17-form-theme-default :global(.p17-input-radiogroup) {
-		display: block;
+		appearance: none;
+		position: relative;
 
 		margin: 0;
 		padding: 0;
@@ -127,9 +128,27 @@
 
 	.p17-form-theme-default :global(.p17-field-invalid .p17-input-checkbox),
 	.p17-form-theme-default :global(.p17-field-invalid .p17-input-checkboxgroup),
-	.p17-form-theme-default
-		:global(.p17-field-invalid .p17-input-radiogroup:active) {
+	.p17-form-theme-default :global(.p17-field-invalid .p17-input-radiogroup) {
 		background-color: #f2dbd5;
+	}
+
+	.p17-form-theme-default :global(.p17-input-checkbox:checked:after),
+	.p17-form-theme-default :global(.p17-input-checkboxgroup:checked:after),
+	.p17-form-theme-default :global(.p17-input-radiogroup:checked:after) {
+		content: ' ';
+
+		position: absolute;
+		top: -3%;
+		left: 12%;
+
+		width: 120%;
+		height: 60%;
+
+		border-left: 0.45rem solid #404040;
+		border-bottom: 0.45rem solid #404040;
+		border-radius: 0.1rem;
+
+		transform: rotate(-45deg);
 	}
 
 	.p17-form-theme-default :global(.p17-container-slider) {
@@ -270,7 +289,7 @@
 		.p17-form-theme-default :global(.p17-input-checkbox:checked:after),
 		.p17-form-theme-default :global(.p17-input-checkboxgroup:checked:after),
 		.p17-form-theme-default :global(.p17-input-radiogroup:checked:after) {
-			color: #c0c0c0;
+			border-color: #d0d0d0;
 		}
 
 		.p17-form-theme-default :global(.p17-input-slider),
