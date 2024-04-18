@@ -91,8 +91,6 @@
 			<SliderInput {...$$restProps} />
 		{:else if type === 'select' || type === 'dropdown'}
 			<SelectInput {...$$restProps} />
-		{:else if type === 'custom'}
-			<slot {...$$restProps} />
 		{/if}
 		<slot name="last" />
 	</FieldContainer>
