@@ -1,10 +1,10 @@
 import path from 'path'
-import { parse, newNodeRegExp } from './p21'
+import { parse, newNodeRegExp } from './parser'
 
 const testdataDir = './src/p21/testdata'
 
 const createSvelteFilePath = (filename) => {
-	return `${testdataDir}/test-files/${filename}.svelte`
+	return `${testdataDir}/files/${filename}.svelte`
 }
 
 describe('p21', () => {
@@ -190,21 +190,21 @@ describe('p21', () => {
 		})
 
 		test('Parses directory', () => {
-			const metadata = parse(`${testdataDir}/test-dir`)
+			const metadata = parse(`${testdataDir}/dir`)
 
 			expect(metadata).toEqual([
 				{
 					name: 'BandOne.svelte',
-					relPath: `${testdataDir}/test-dir/BandOne.svelte`,
-					absPath: path.resolve(`${testdataDir}/test-dir/BandOne.svelte`),
+					relPath: `${testdataDir}/dir/BandOne.svelte`,
+					absPath: path.resolve(`${testdataDir}/dir/BandOne.svelte`),
 					nodes: {
 						artist: 'Rhapsody of Fire',
 					},
 				},
 				{
 					name: 'BandTwo.svelte',
-					relPath: `${testdataDir}/test-dir/BandTwo.svelte`,
-					absPath: path.resolve(`${testdataDir}/test-dir/BandTwo.svelte`),
+					relPath: `${testdataDir}/dir/BandTwo.svelte`,
+					absPath: path.resolve(`${testdataDir}/dir/BandTwo.svelte`),
 					nodes: {
 						artist: 'Children of Bodom',
 					},

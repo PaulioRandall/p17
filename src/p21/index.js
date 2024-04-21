@@ -1,1 +1,1 @@
-export { parse, newNodeRegExp } from './p21'
+export { parse, newNodeRegExp } from './parser'
