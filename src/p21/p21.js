@@ -2,13 +2,17 @@ import fs from 'fs'
 import path from 'path'
 import * as fsWalk from '@nodelib/fs.walk'
 
-export const newNodeRegExp = () => {
-	return RegExp('^[^S\r\n]*//p21((?:.[$a-zA-Z_][$a-zA-Z_0-9]*)+):(.*)$', 'img')
+export const newNodeRegExp = (prefix = 'p21') => {
+	return RegExp(
+		`^[^S\r\n]*//${prefix}((?:.[$a-zA-Z_][$a-zA-Z_0-9]*)+):(.*)$`,
+		'mgi'
+	)
 }
 
-export const parse = (src) => {
+export const parse = (src, options = {}) => {
 	try {
-		return parseTree(src)
+		options = parseOptions(options)
+		return parseTree(src, options)
 	} catch (e) {
 		console.error(`[P21] Unable to parse '${src}'`)
 		console.error(e)
@@ -16,11 +20,17 @@ export const parse = (src) => {
 	}
 }
 
-const parseTree = (src) => {
+const parseOptions = ({ prefix }) => {
+	return {
+		prefix: prefix ? prefix : 'p21',
+	}
+}
+
+const parseTree = (src, options) => {
 	return listFiles(src) //
 		.filter(svelteFilesOnly)
 		.map(fileInfo)
-		.map(appendFileNodes)
+		.map((f) => appendFileNodes(f, options))
 }
 
 const listFiles = (src) => {
@@ -54,9 +64,9 @@ const fileInfo = (f) => {
 	}
 }
 
-const appendFileNodes = (f) => {
+const appendFileNodes = (f, options) => {
 	const data = readWholeFile(f.absPath)
-	f.nodes = extractNodes(data)
+	f.nodes = extractNodes(data, options)
 	return f
 }
 
@@ -64,13 +74,13 @@ const readWholeFile = (absPath) => {
 	return fs.readFileSync(absPath, { encoding: 'utf-8' })
 }
 
-const extractNodes = (data) => {
+const extractNodes = (data, options) => {
 	// Examples:
 	//p21.name: Abc
 	//P21.group.name: Abc
 
 	const nodes = {}
-	const regexp = newNodeRegExp()
+	const regexp = newNodeRegExp(options.prefix)
 	let next = null
 
 	while ((next = regexp.exec(data)) !== null) {

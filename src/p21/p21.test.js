@@ -15,6 +15,18 @@ describe('p21', () => {
 			expect(act).toEqual(exp)
 		})
 
+		test('Custom prefix', () => {
+			const act = newNodeRegExp('my_custom_prefix').exec(
+				'//my_custom_prefix.name:value'
+			)
+			const exp = expect.arrayContaining([
+				'//my_custom_prefix.name:value',
+				'.name',
+				'value',
+			])
+			expect(act).toEqual(exp)
+		})
+
 		test('Nested node', () => {
 			const act = newNodeRegExp().exec('//p21.group.name:value')
 			const exp = expect.arrayContaining([
@@ -195,6 +207,24 @@ describe('p21', () => {
 					absPath: path.resolve(`${testdataDir}/test-dir/BandTwo.svelte`),
 					nodes: {
 						artist: 'Children of Bodom',
+					},
+				},
+			])
+		})
+
+		test('Parses with option', () => {
+			const file = createSvelteFilePath('LineDoc_Option_Prefix')
+			const metadata = parse(file, {
+				prefix: 'my_custom_prefix',
+			})
+
+			expect(metadata).toEqual([
+				{
+					name: path.basename(file),
+					relPath: file,
+					absPath: path.resolve(file),
+					nodes: {
+						artist: 'Rhapsody of Fire',
 					},
 				},
 			])
