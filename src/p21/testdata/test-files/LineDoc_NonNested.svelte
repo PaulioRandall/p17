@@ -1,5 +1,5 @@
 <script>
-	//P21.name:Rhapsody of Fire
+	//P21.artist:Rhapsody of Fire
 </script>
 
 <div />
