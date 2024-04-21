@@ -19,8 +19,8 @@ describe('p22', () => {
 	describe('parse', () => {
 		//P22.name:
 		//P22.description:
-		//P22.const.prop.<name>:
-		//P22.let.prop.<name>:
+		//P22.const.<name>:
+		//P22.let.<name>:
 		//P22.slot.<name>:
 
 		test('parses component name and description', () => {

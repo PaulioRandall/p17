@@ -2,18 +2,20 @@ import { parse as p21 } from '../p21'
 
 //P22.name:
 //P22.description:
-//P22.const.prop.<name>:
-//P22.let.prop.<name>:
+//P22.const.<name>:
+//P22.let.<name>:
 //P22.slot.<name>:
 
 export const parse = (src) => {
 	return p21(src, { prefix: 'p22' }) //
 		.map(trimNameAndDescription)
-		.map(makePropIfMissing)
+		.map(makeConstIfMissing)
+		.map(makeLetIfMissing)
 		.map(makeSlotIfMissing)
-		.map(trimProps)
+		.map(trimConst)
+		.map(trimLet)
 		.map(trimSlots)
-		.map(renamePropToProps)
+		.map(groupProps)
 		.map(renameSlotToSlots)
 }
 
@@ -23,23 +25,17 @@ const trimNameAndDescription = (meta) => {
 	return meta
 }
 
-const makePropIfMissing = (meta) => {
-	if (typeof meta.nodes.prop !== 'object') {
-		meta.nodes.prop = {
-			const: {},
-			let: {},
-		}
-		return meta
+const makeConstIfMissing = (meta) => {
+	if (typeof meta.nodes.const !== 'object') {
+		meta.nodes.const = {}
 	}
+	return meta
+}
 
-	if (typeof meta.nodes.prop.const !== 'object') {
-		meta.nodes.prop.const = {}
+const makeLetIfMissing = (meta) => {
+	if (typeof meta.nodes.let !== 'object') {
+		meta.nodes.let = {}
 	}
-
-	if (typeof meta.nodes.prop.let !== 'object') {
-		meta.nodes.prop.let = {}
-	}
-
 	return meta
 }
 
@@ -50,15 +46,17 @@ const makeSlotIfMissing = (meta) => {
 	return meta
 }
 
-const trimProps = (meta) => {
-	for (const name in meta.nodes.prop.const) {
-		meta.nodes.prop.const[name] = trimSpace(meta.nodes.prop.const[name])
+const trimConst = (meta) => {
+	for (const name in meta.nodes.const) {
+		meta.nodes.const[name] = trimSpace(meta.nodes.const[name])
 	}
+	return meta
+}
 
-	for (const name in meta.nodes.prop.let) {
-		meta.nodes.prop.let[name] = trimSpace(meta.nodes.prop.let[name])
+const trimLet = (meta) => {
+	for (const name in meta.nodes.let) {
+		meta.nodes.let[name] = trimSpace(meta.nodes.let[name])
 	}
-
 	return meta
 }
 
@@ -69,9 +67,15 @@ const trimSlots = (meta) => {
 	return meta
 }
 
-const renamePropToProps = (meta) => {
-	meta.nodes.props = meta.nodes.prop
-	delete meta.nodes.prop
+const groupProps = (meta) => {
+	meta.nodes.props = {
+		const: meta.nodes.const,
+		let: meta.nodes.let,
+	}
+
+	delete meta.nodes.const
+	delete meta.nodes.let
+
 	return meta
 }
 
