@@ -9,6 +9,7 @@ import { parse as p21 } from '../p21'
 export const parse = (src) => {
 	return p21(src, { prefix: 'p22' }) //
 		.map(trimNameAndDescription)
+		.map(useFilenameIfNameMissing)
 		.map(makeConstIfMissing)
 		.map(makeLetIfMissing)
 		.map(makeSlotIfMissing)
@@ -22,6 +23,13 @@ export const parse = (src) => {
 const trimNameAndDescription = (meta) => {
 	meta.nodes.name = trimSpace(meta.nodes.name)
 	meta.nodes.description = trimSpace(meta.nodes.description)
+	return meta
+}
+
+const useFilenameIfNameMissing = (meta) => {
+	if (!meta.nodes.name) {
+		meta.nodes.name = meta.name.split('.')[0]
+	}
 	return meta
 }
 

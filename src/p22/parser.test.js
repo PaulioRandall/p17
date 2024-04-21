@@ -51,7 +51,7 @@ describe('p22', () => {
 				{
 					...generateFileFields(file),
 					nodes: {
-						name: '',
+						name: 'PropsComponent',
 						description: '',
 						props: {
 							const: {
@@ -75,7 +75,7 @@ describe('p22', () => {
 				{
 					...generateFileFields(file),
 					nodes: {
-						name: '',
+						name: 'SlotsComponent',
 						description: '',
 						props: {
 							const: {},
