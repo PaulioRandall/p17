@@ -2,6 +2,8 @@ import { parse as p21 } from '../p21'
 
 //P22.name:
 //P22.description:
+//P22.module.const.<name>:
+//P22.module.let.<name>:
 //P22.const.<name>:
 //P22.let.<name>:
 //P22.slot.<name>:
