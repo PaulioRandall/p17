@@ -19,7 +19,8 @@ describe('p22', () => {
 	describe('parse', () => {
 		//P22.name:
 		//P22.description:
-		//P22.prop.<name>:
+		//P22.const.prop.<name>:
+		//P22.let.prop.<name>:
 		//P22.slot.<name>:
 
 		test('parses component name and description', () => {
@@ -32,7 +33,10 @@ describe('p22', () => {
 					nodes: {
 						name: 'Name and Description Component',
 						description: 'Just a simple component with a name and description.',
-						props: {},
+						props: {
+							const: {},
+							let: {},
+						},
 						slots: {},
 					},
 				},
@@ -50,8 +54,12 @@ describe('p22', () => {
 						name: '',
 						description: '',
 						props: {
-							abc: '123',
-							xyz: '789',
+							const: {
+								abc: '123',
+							},
+							let: {
+								xyz: '789',
+							},
 						},
 						slots: {},
 					},
@@ -69,11 +77,43 @@ describe('p22', () => {
 					nodes: {
 						name: '',
 						description: '',
-						props: {},
+						props: {
+							const: {},
+							let: {},
+						},
 						slots: {
 							default: 'Meh',
 							abc: '123',
 							xyz: '789',
+						},
+					},
+				},
+			])
+		})
+
+		test('parses fully documented component', () => {
+			const file = createSvelteFilePath('AlbumListItem')
+			const act = parse(file)
+
+			expect(act).toEqual([
+				{
+					...generateFileFields(file),
+					nodes: {
+						name: 'AlbumListItem',
+						description:
+							'Details about an album. Designed to be used within a grid or flex grid.',
+						props: {
+							const: {
+								func: 'A random function to bind on that does nothing.',
+							},
+							let: {
+								title: 'Title of the album.',
+								artist: 'Artist or band who created the album.',
+								published: 'The published date of the album if known.',
+							},
+						},
+						slots: {
+							default: 'A description of the album.',
 						},
 					},
 				},

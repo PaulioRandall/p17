@@ -1,9 +1,10 @@
 import { parse as p21 } from '../p21'
 
 //P22.name:
-//P22.prop:
-//P22.slot:
 //P22.description:
+//P22.const.prop.<name>:
+//P22.let.prop.<name>:
+//P22.slot.<name>:
 
 export const parse = (src) => {
 	return p21(src, { prefix: 'p22' }) //
@@ -24,8 +25,21 @@ const trimNameAndDescription = (meta) => {
 
 const makePropIfMissing = (meta) => {
 	if (typeof meta.nodes.prop !== 'object') {
-		meta.nodes.prop = {}
+		meta.nodes.prop = {
+			const: {},
+			let: {},
+		}
+		return meta
 	}
+
+	if (typeof meta.nodes.prop.const !== 'object') {
+		meta.nodes.prop.const = {}
+	}
+
+	if (typeof meta.nodes.prop.let !== 'object') {
+		meta.nodes.prop.let = {}
+	}
+
 	return meta
 }
 
@@ -37,9 +51,14 @@ const makeSlotIfMissing = (meta) => {
 }
 
 const trimProps = (meta) => {
-	for (const name in meta.nodes.prop) {
-		meta.nodes.prop[name] = trimSpace(meta.nodes.prop[name])
+	for (const name in meta.nodes.prop.const) {
+		meta.nodes.prop.const[name] = trimSpace(meta.nodes.prop.const[name])
 	}
+
+	for (const name in meta.nodes.prop.let) {
+		meta.nodes.prop.let[name] = trimSpace(meta.nodes.prop.let[name])
+	}
+
 	return meta
 }
 
