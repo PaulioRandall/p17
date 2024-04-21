@@ -24,7 +24,7 @@ describe('p22', () => {
 		//P22.slot.<name>:
 
 		test('parses component name and description', () => {
-			const file = createSvelteFilePath('NameAndDescComponent')
+			const file = createSvelteFilePath('NameAndDescription')
 			const act = parse(file)
 
 			expect(act).toEqual([
@@ -33,6 +33,38 @@ describe('p22', () => {
 					nodes: {
 						name: 'Name and Description Component',
 						description: 'Just a simple component with a name and description.',
+						module: {
+							const: {},
+							let: {},
+						},
+						props: {
+							const: {},
+							let: {},
+						},
+						slots: {},
+					},
+				},
+			])
+		})
+
+		test('parses component module props', () => {
+			const file = createSvelteFilePath('ModuleProps')
+			const act = parse(file)
+
+			expect(act).toEqual([
+				{
+					...generateFileFields(file),
+					nodes: {
+						name: 'ModuleProps',
+						description: '',
+						module: {
+							const: {
+								abc: '123',
+							},
+							let: {
+								xyz: '789',
+							},
+						},
 						props: {
 							const: {},
 							let: {},
@@ -44,15 +76,19 @@ describe('p22', () => {
 		})
 
 		test('parses component props', () => {
-			const file = createSvelteFilePath('PropsComponent')
+			const file = createSvelteFilePath('Props')
 			const act = parse(file)
 
 			expect(act).toEqual([
 				{
 					...generateFileFields(file),
 					nodes: {
-						name: 'PropsComponent',
+						name: 'Props',
 						description: '',
+						module: {
+							const: {},
+							let: {},
+						},
 						props: {
 							const: {
 								abc: '123',
@@ -68,15 +104,19 @@ describe('p22', () => {
 		})
 
 		test('parses component slots', () => {
-			const file = createSvelteFilePath('SlotsComponent')
+			const file = createSvelteFilePath('Slots')
 			const act = parse(file)
 
 			expect(act).toEqual([
 				{
 					...generateFileFields(file),
 					nodes: {
-						name: 'SlotsComponent',
+						name: 'Slots',
 						description: '',
+						module: {
+							const: {},
+							let: {},
+						},
 						props: {
 							const: {},
 							let: {},
@@ -102,6 +142,14 @@ describe('p22', () => {
 						name: 'AlbumListItem',
 						description:
 							'Details about an album. Designed to be used within a grid or flex grid.',
+						module: {
+							const: {
+								genres: 'List of allowable genres.',
+							},
+							let: {
+								formatDate: 'Formats any dates, defaults to DD/MM/YYYY.',
+							},
+						},
 						props: {
 							const: {
 								func: 'A random function to bind on that does nothing.',
@@ -109,7 +157,8 @@ describe('p22', () => {
 							let: {
 								title: 'Title of the album.',
 								artist: 'Artist or band who created the album.',
-								published: 'The published date of the album if known.',
+								published:
+									'If known, the published date of the album in the format YYYY-MM-DD.',
 							},
 						},
 						slots: {

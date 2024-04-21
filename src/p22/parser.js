@@ -10,9 +10,14 @@ export const parse = (src) => {
 	return p21(src, { prefix: 'p22' }) //
 		.map(trimNameAndDescription)
 		.map(useFilenameIfNameMissing)
+		.map(makeModuleIfMissing)
+		.map(makeModuleConstIfMissing)
+		.map(makeModuleLetIfMissing)
 		.map(makeConstIfMissing)
 		.map(makeLetIfMissing)
 		.map(makeSlotIfMissing)
+		.map(trimModuleConst)
+		.map(trimModuleLet)
 		.map(trimConst)
 		.map(trimLet)
 		.map(trimSlots)
@@ -29,6 +34,27 @@ const trimNameAndDescription = (meta) => {
 const useFilenameIfNameMissing = (meta) => {
 	if (!meta.nodes.name) {
 		meta.nodes.name = meta.name.split('.')[0]
+	}
+	return meta
+}
+
+const makeModuleIfMissing = (meta) => {
+	if (typeof meta.nodes.module !== 'object') {
+		meta.nodes.module = {}
+	}
+	return meta
+}
+
+const makeModuleConstIfMissing = (meta) => {
+	if (typeof meta.nodes.module.const !== 'object') {
+		meta.nodes.module.const = {}
+	}
+	return meta
+}
+
+const makeModuleLetIfMissing = (meta) => {
+	if (typeof meta.nodes.module.let !== 'object') {
+		meta.nodes.module.let = {}
 	}
 	return meta
 }
@@ -50,6 +76,20 @@ const makeLetIfMissing = (meta) => {
 const makeSlotIfMissing = (meta) => {
 	if (typeof meta.nodes.slot !== 'object') {
 		meta.nodes.slot = {}
+	}
+	return meta
+}
+
+const trimModuleConst = (meta) => {
+	for (const name in meta.nodes.module.const) {
+		meta.nodes.module.const[name] = trimSpace(meta.nodes.module.const[name])
+	}
+	return meta
+}
+
+const trimModuleLet = (meta) => {
+	for (const name in meta.nodes.module.let) {
+		meta.nodes.module.let[name] = trimSpace(meta.nodes.module.let[name])
 	}
 	return meta
 }
