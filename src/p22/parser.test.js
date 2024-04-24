@@ -1,4 +1,4 @@
-import path from 'path'
+import upath from 'upath'
 import { parse } from './parser'
 
 const testdataDir = './src/p22/testdata'
@@ -9,10 +9,18 @@ const createSvelteFilePath = (filename) => {
 
 const generateFileFields = (file) => {
 	return {
-		name: path.basename(file),
-		relPath: file,
-		absPath: path.resolve(file),
+		name: upath.basename(file),
+		relPath: upath.join(file),
+		absPath: upath.resolve(file),
 	}
+}
+
+const parseToUnix = (f) => {
+	return parse(f).map((m) => {
+		m.relPath = upath.toUnix(m.relPath)
+		m.absPath = upath.toUnix(m.absPath)
+		return m
+	})
 }
 
 describe('p22', () => {
@@ -27,7 +35,7 @@ describe('p22', () => {
 
 		test('parses component name and description', () => {
 			const file = createSvelteFilePath('NameAndDescription')
-			const act = parse(file)
+			const act = parseToUnix(file)
 
 			expect(act).toEqual([
 				{
@@ -51,7 +59,7 @@ describe('p22', () => {
 
 		test('parses component module props', () => {
 			const file = createSvelteFilePath('ModuleProps')
-			const act = parse(file)
+			const act = parseToUnix(file)
 
 			expect(act).toEqual([
 				{
@@ -79,7 +87,7 @@ describe('p22', () => {
 
 		test('parses component props', () => {
 			const file = createSvelteFilePath('Props')
-			const act = parse(file)
+			const act = parseToUnix(file)
 
 			expect(act).toEqual([
 				{
@@ -107,7 +115,7 @@ describe('p22', () => {
 
 		test('parses component slots', () => {
 			const file = createSvelteFilePath('Slots')
-			const act = parse(file)
+			const act = parseToUnix(file)
 
 			expect(act).toEqual([
 				{
@@ -135,7 +143,7 @@ describe('p22', () => {
 
 		test('parses fully documented component', () => {
 			const file = createSvelteFilePath('AlbumListItem')
-			const act = parse(file)
+			const act = parseToUnix(file)
 
 			expect(act).toEqual([
 				{

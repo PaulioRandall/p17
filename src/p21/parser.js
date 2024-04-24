@@ -11,6 +11,7 @@ export const newNodeRegExp = (prefix = 'p21') => {
 
 export const parse = (src, options = {}) => {
 	try {
+		src = path.join(src)
 		options = parseOptions(options)
 		return parseTree(src, options)
 	} catch (e) {
@@ -59,7 +60,7 @@ const svelteFilesOnly = (f) => {
 const fileInfo = (f) => {
 	return {
 		name: f.name,
-		relPath: f.path,
+		relPath: path.join(f.path),
 		absPath: path.resolve(f.path),
 	}
 }

@@ -1,10 +1,18 @@
-import path from 'path'
+import upath from 'upath'
 import { parse, newNodeRegExp } from './parser'
 
 const testdataDir = './src/p21/testdata'
 
 const createSvelteFilePath = (filename) => {
 	return `${testdataDir}/files/${filename}.svelte`
+}
+
+const parseToUnix = (f, options) => {
+	return parse(f, options).map((m) => {
+		m.relPath = upath.toUnix(m.relPath)
+		m.absPath = upath.toUnix(m.absPath)
+		return m
+	})
 }
 
 describe('p21', () => {
@@ -79,13 +87,13 @@ describe('p21', () => {
 	describe('parse()', () => {
 		test('Parses non-nested single line node', () => {
 			const file = createSvelteFilePath('LineDoc_NonNested')
-			const metadata = parse(file)
+			const metadata = parseToUnix(file)
 
 			expect(metadata).toEqual([
 				{
-					name: path.basename(file),
-					relPath: file,
-					absPath: path.resolve(file),
+					name: upath.basename(file),
+					relPath: upath.join(file),
+					absPath: upath.resolve(file),
 					nodes: {
 						artist: 'Rhapsody of Fire',
 					},
@@ -95,13 +103,13 @@ describe('p21', () => {
 
 		test('Parses non-nested single line node (lowercase p21)', () => {
 			const file = createSvelteFilePath('LineDoc_NonNested_Lowercase')
-			const metadata = parse(file)
+			const metadata = parseToUnix(file)
 
 			expect(metadata).toEqual([
 				{
-					name: path.basename(file),
-					relPath: file,
-					absPath: path.resolve(file),
+					name: upath.basename(file),
+					relPath: upath.join(file),
+					absPath: upath.resolve(file),
 					nodes: {
 						artist: 'Rhapsody of Fire',
 					},
@@ -111,13 +119,13 @@ describe('p21', () => {
 
 		test('Parses multiple non-nested single line nodes', () => {
 			const file = createSvelteFilePath('LineDoc_NonNested_Multiple')
-			const metadata = parse(file)
+			const metadata = parseToUnix(file)
 
 			expect(metadata).toEqual([
 				{
-					name: path.basename(file),
-					relPath: file,
-					absPath: path.resolve(file),
+					name: upath.basename(file),
+					relPath: upath.join(file),
+					absPath: upath.resolve(file),
 					nodes: {
 						artist: 'Rhapsody of Fire',
 						album: 'From Chaos to Eternity',
@@ -129,13 +137,13 @@ describe('p21', () => {
 
 		test('Parses nested single line node', () => {
 			const file = createSvelteFilePath('LineDoc_Nested')
-			const metadata = parse(file)
+			const metadata = parseToUnix(file)
 
 			expect(metadata).toEqual([
 				{
-					name: path.basename(file),
-					relPath: file,
-					absPath: path.resolve(file),
+					name: upath.basename(file),
+					relPath: upath.join(file),
+					absPath: upath.resolve(file),
 					nodes: {
 						bands: {
 							artist: 'Rhapsody of Fire',
@@ -147,13 +155,13 @@ describe('p21', () => {
 
 		test('Parses nested single line node 2', () => {
 			const file = createSvelteFilePath('LineDoc_Nested_2')
-			const metadata = parse(file)
+			const metadata = parseToUnix(file)
 
 			expect(metadata).toEqual([
 				{
-					name: path.basename(file),
-					relPath: file,
-					absPath: path.resolve(file),
+					name: upath.basename(file),
+					relPath: upath.join(file),
+					absPath: upath.resolve(file),
 					nodes: {
 						music: {
 							bands: {
@@ -167,13 +175,13 @@ describe('p21', () => {
 
 		test('Parses comprehensive set of nested and non-nested nodes', () => {
 			const file = createSvelteFilePath('LineDoc_Complex')
-			const metadata = parse(file)
+			const metadata = parseToUnix(file)
 
 			expect(metadata).toEqual([
 				{
-					name: path.basename(file),
-					relPath: file,
-					absPath: path.resolve(file),
+					name: upath.basename(file),
+					relPath: upath.join(file),
+					absPath: upath.resolve(file),
 					nodes: {
 						type: 'Music',
 						music: {
@@ -190,21 +198,21 @@ describe('p21', () => {
 		})
 
 		test('Parses directory', () => {
-			const metadata = parse(`${testdataDir}/dir`)
+			const metadata = parseToUnix(`${testdataDir}/dir`)
 
 			expect(metadata).toEqual([
 				{
 					name: 'BandOne.svelte',
-					relPath: `${testdataDir}/dir/BandOne.svelte`,
-					absPath: path.resolve(`${testdataDir}/dir/BandOne.svelte`),
+					relPath: upath.join(`${testdataDir}/dir/BandOne.svelte`),
+					absPath: upath.resolve(`${testdataDir}/dir/BandOne.svelte`),
 					nodes: {
 						artist: 'Rhapsody of Fire',
 					},
 				},
 				{
 					name: 'BandTwo.svelte',
-					relPath: `${testdataDir}/dir/BandTwo.svelte`,
-					absPath: path.resolve(`${testdataDir}/dir/BandTwo.svelte`),
+					relPath: upath.join(`${testdataDir}/dir/BandTwo.svelte`),
+					absPath: upath.resolve(`${testdataDir}/dir/BandTwo.svelte`),
 					nodes: {
 						artist: 'Children of Bodom',
 					},
@@ -214,15 +222,15 @@ describe('p21', () => {
 
 		test('Parses with option', () => {
 			const file = createSvelteFilePath('LineDoc_Option_Prefix')
-			const metadata = parse(file, {
+			const metadata = parseToUnix(file, {
 				prefix: 'my_custom_prefix',
 			})
 
 			expect(metadata).toEqual([
 				{
-					name: path.basename(file),
-					relPath: file,
-					absPath: path.resolve(file),
+					name: upath.basename(file),
+					relPath: upath.join(file),
+					absPath: upath.resolve(file),
 					nodes: {
 						artist: 'Rhapsody of Fire',
 					},
