@@ -1,4 +1,4 @@
-import p21 from 'p21'
+import p23 from 'p23'
 
 //P22.name:
 //P22.description:
@@ -9,7 +9,7 @@ import p21 from 'p21'
 //P22.slot.<name>:
 
 export const parse = (src) => {
-	return p21(src, { prefix: 'p22' }) //
+	return p23(src, { prefix: 'p22' }) //
 		.map(trimNameAndDescription)
 		.map(useFilenameIfNameMissing)
 		.map(makeModuleIfMissing)

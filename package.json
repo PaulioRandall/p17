@@ -4,7 +4,7 @@
 	"description": "Svelte library experimenting with form behaviour and user interaction (layout and style uses UK GDS as a guide)",
 	"type": "module",
 	"license": "MIT",
-	"version": "0.5.3",
+	"version": "0.6.0",
 	"engines": {
 		"node": ">=18"
 	},
@@ -40,6 +40,7 @@
 		"@sveltejs/kit": "2.5.7",
 		"@sveltejs/package": "2.3.1",
 		"jest": "29.7.0",
+		"p23": "0.1.0",
 		"prettier": "3.2.5",
 		"prettier-plugin-svelte": "3.2.3",
 		"upath": "2.0.1",
