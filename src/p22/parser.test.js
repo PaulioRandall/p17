@@ -4,7 +4,7 @@ import { parse } from './parser'
 const testdataDir = './src/p22/testdata'
 
 const createSvelteFilePath = (filename) => {
-	return `${testdataDir}/files/${filename}.svelte`
+	return upath.join(`${testdataDir}/files/${filename}.svelte`)
 }
 
 const generateFileFields = (file) => {
