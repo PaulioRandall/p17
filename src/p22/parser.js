@@ -1,4 +1,4 @@
-import { parse as p21 } from '../p21'
+import p21 from 'p21'
 
 //P22.name:
 //P22.description:
@@ -138,3 +138,5 @@ const renameSlotToSlots = (meta) => {
 const trimSpace = (s) => {
 	return typeof s === 'string' ? s.trim() : ''
 }
+
+export default parse
