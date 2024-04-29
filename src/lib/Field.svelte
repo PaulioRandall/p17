@@ -16,6 +16,7 @@
 	const values = getContext('p17-values')
 	const errors = getContext('p17-errors')
 
+	//p24.let.type: Type of input, e.g. text, number, phone, etc.
 	export let type // = ""
 	export let id = randomId()
 	export let name // = ""
