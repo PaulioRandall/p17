@@ -2,6 +2,8 @@
 	import { getContext } from 'svelte'
 	import { getErrorState } from './private/shared'
 
+	//p24.description: Upon change, prints a field's value and error values.
+
 	const field = getContext('p17-field')
 	const values = getContext('p17-values')
 	const errors = getContext('p17-errors')
@@ -35,4 +37,5 @@
 	$: browser && console.log(`errors.${field.name} (state):`, errorState)
 </script>
 
+<!--p24.slot.default: Anything you like.-->
 <slot />

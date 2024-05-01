@@ -2,7 +2,7 @@ import { renderReadme } from 'p24'
 
 try {
 	renderReadme({
-		src: './dist',
+		glob: 'dist/*.svelte',
 	})
 } catch (err) {
 	console.error(err)

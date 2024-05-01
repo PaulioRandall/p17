@@ -1,8 +1,13 @@
 <script>
 	import { getContext } from 'svelte'
 
-	export let values = {}
+	//p24.description: On click, populates specified form fields with specified values.
+
+	//p24.let.label: Button text (default: "Populate").
 	export let label = 'Populate'
+
+	//p24.let.values: Object of field name:value entries to populate.
+	export let values = {}
 
 	const fieldStore = getContext('p17-fields')
 	const valueStore = getContext('p17-values')

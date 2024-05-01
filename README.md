@@ -22,31 +22,86 @@ This library is made to be forked or plundered by anyone for whatever you want a
 
 ### `<ButtonPopulate>`
 
-> No documentation.
+On click, populates specified form fields with specified values.
+
+```html
+<script>
+	// Button text (default: "Populate").
+	export let label
+
+	// Object of field name:value entries to populate.
+	export let values
+</script>
+```
 
 ### `<ButtonReset>`
 
-> No documentation.
+On click, resets the form fields to their initial values.
+
+```html
+<script>
+	// Button text (default: "Reset").
+	export let label
+
+	// True to reset values to empty strings rather than initial values (default: false).
+	export let clear
+</script>
+```
 
 ### `<ButtonSubmit>`
 
-> No documentation.
+On click, validates and submits the form.
+
+```html
+<script>
+	// Button text (default: "Submit").
+	export let label
+</script>
+```
 
 ### `<ButtonUnvalidate>`
 
-> No documentation.
+On click, sets all fields to the unvalidated state.
+
+```html
+<script>
+	// Button text (default: "Unvalidate").
+	export let label
+</script>
+```
 
 ### `<DebugFieldPrinter>`
 
-> No documentation.
+Upon change, prints a field's value and error values.
+
+```html
+<!-- Anything you like. -->
+<slot />
+```
 
 ### `<DebugFormPrinter>`
 
-> No documentation.
+Upon change, prints the fields, values, and errors stores.
+
+```html
+<script>
+	// Enable printing for fields store (default: false unless values and errors props are also false).
+	export let fields
+
+	// Enable printing for values store (default: false unless fields and errors props are also false).
+	export let values
+
+	// Enable printing for errors store (default: false unless fields and values props are also false).
+	export let errors
+</script>
+
+<!-- Anything you like. -->
+<slot />
+```
 
 ### `<DebugFormTable>`
 
-> No documentation.
+Renders a reactively updating table detailing field values.
 
 ### `<Error>`
 
@@ -78,49 +133,5 @@ This library is made to be forked or plundered by anyone for whatever you want a
 > No documentation.
 
 ### `<ThemeDefault>`
-
-> No documentation.
-
-### `<+layout>`
-
-> No documentation.
-
-### `<+page>`
-
-> No documentation.
-
-### `<CheckboxGroupInput>`
-
-> No documentation.
-
-### `<CheckboxInput>`
-
-> No documentation.
-
-### `<FieldContainer>`
-
-> No documentation.
-
-### `<Group>`
-
-> No documentation.
-
-### `<HiddenInput>`
-
-> No documentation.
-
-### `<RadioGroupInput>`
-
-> No documentation.
-
-### `<SelectInput>`
-
-> No documentation.
-
-### `<SliderInput>`
-
-> No documentation.
-
-### `<TextualInput>`
 
 > No documentation.
