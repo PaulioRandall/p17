@@ -2,7 +2,7 @@
 	import { getContext } from 'svelte'
 
 	import Group from './Group.svelte'
-	import Label from '../Label.svelte'
+	import Label from './Label.svelte'
 	import metatypes from '../metatypes'
 
 	const field = getContext('p17-field')

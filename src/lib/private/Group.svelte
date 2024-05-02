@@ -1,10 +1,10 @@
 <script>
 	import { getContext } from 'svelte'
 
-	import Legend from '../Legend.svelte'
-	import Label from '../Label.svelte'
-	import Hint from '../Hint.svelte'
-	import Error from '../Error.svelte'
+	import Legend from './Legend.svelte'
+	import Label from './Label.svelte'
+	import Hint from './Hint.svelte'
+	import Error from './Error.svelte'
 
 	const field = getContext('p17-field')
 </script>

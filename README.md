@@ -101,37 +101,69 @@ Upon change, prints the fields, values, and errors stores.
 
 ### `<DebugFormTable>`
 
-Renders a reactively updating table detailing field values.
-
-### `<Error>`
-
-> No documentation.
+Renders a reactively updating table of field values.
 
 ### `<Field>`
 
 ```html
 <script>
-	// Type of input, e.g. text, number, phone, etc.
+	// P17 Input type that will internally map to a HTML input type, e.g. text, number, phone, etc. Accessible via 'p17-field' context.
 	export let type
+
+	// Element id of the field. Accessible via 'p17-field' context.
+	export let id
+
+	// Input name used as reference for the field within the fields, values, and errors stores. Accessible via 'p17-field' context.
+	export let name
+
+	// Label or field heading. Accessible via 'p17-field' context.
+	export let label
+
+	// Hint usually appearing below the heading but above the input. Accessible via 'p17-field' context.
+	export let hint
+
+	// Options in the form [{ label, value }] required only for certain fields such as select, checkboxgroup, and radiogroup. Accessible via 'p17-field' context.
+	export let options
+
+	// Value of the field before formatting is applied. Accessible via 'p17-values' context.
+	export let value
+
+	// Format value function to run just before submit. Accepts a field value and returns a formatted version. Accessible via 'p17-field' context.
+	export let format
+
+	// Validation function to run just before submit. Accepts the field value and returns an error string, null, or undefined. Accessible via 'p17-field' context.
+	export let validate
 </script>
+
+<!-- Slot in anything before the field elements. -->
+<slot name="before" />
+
+<!-- Slot in anything after the field elements. -->
+<slot name="after" />
 ```
 
 ### `<Form>`
 
-> No documentation.
+Primary component in which fields are slotted into.
 
-### `<Hint>`
+```html
+<script>
+	// Store of information about each named field. Accessible via 'p17-fields' context.
+	export const fields
 
-> No documentation.
+	// Store of errors, one for each named field. Accessible via 'p17-errors' context.
+	export const values
 
-### `<Label>`
+	// Element id of the form. Accessible via 'p17-form' context.
+	export let id
 
-> No documentation.
+	// Function for validating all fields. It accepts a field name to value object and must return a field name to errors object. Accessible via 'p17-form' context.
+	export let validate
 
-### `<Legend>`
+	// Function for submitting the form. It accepts a field name to value object. Accessible via 'p17-form' context.
+	export let submit
+</script>
 
-> No documentation.
-
-### `<ThemeDefault>`
-
-> No documentation.
+<!-- Form fields, buttons, and anything else you fancy. -->
+<slot />
+```

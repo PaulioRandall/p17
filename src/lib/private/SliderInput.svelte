@@ -1,9 +1,9 @@
 <script>
 	import { onMount, getContext } from 'svelte'
 
-	import Label from '../Label.svelte'
-	import Hint from '../Hint.svelte'
-	import Error from '../Error.svelte'
+	import Label from './Label.svelte'
+	import Hint from './Hint.svelte'
+	import Error from './Error.svelte'
 	import metatypes from '../metatypes'
 
 	const field = getContext('p17-field')
