@@ -43,7 +43,8 @@ On click, resets the form fields to their initial values.
 	// Button text (default: "Reset").
 	export let label
 
-	// True to reset values to empty strings rather than initial values (default: false).
+	// True to reset values to empty strings rather than initial values
+	// (default: false).
 	export let clear
 </script>
 ```
@@ -85,13 +86,16 @@ Upon change, prints the fields, values, and errors stores.
 
 ```html
 <script>
-	// Enable printing for fields store (default: false unless values and errors props are also false).
+	// Enable printing for fields store (default: false unless values and errors
+	// props are also false).
 	export let fields
 
-	// Enable printing for values store (default: false unless fields and errors props are also false).
+	// Enable printing for values store (default: false unless fields and errors
+	// props are also false).
 	export let values
 
-	// Enable printing for errors store (default: false unless fields and values props are also false).
+	// Enable printing for errors store (default: false unless fields and values
+	// props are also false).
 	export let errors
 </script>
 
@@ -113,25 +117,33 @@ Renders a reactively updating table of field values.
 	// Element id of the field. Accessible via 'p17-field' context.
 	export let id
 
-	// Input name used as reference for the field within the fields, values, and errors stores. Accessible via 'p17-field' context.
+	// Input name used as reference for the field within the fields, values, and
+	// errors stores. Accessible via 'p17-field' context.
 	export let name
 
 	// Label or field heading. Accessible via 'p17-field' context.
 	export let label
 
-	// Hint usually appearing below the heading but above the input. Accessible via 'p17-field' context.
+	// Hint usually appearing below the heading but above the input. Accessible
+	// via 'p17-field' context.
 	export let hint
 
-	// Options in the form [{ label, value }] required only for certain fields such as select, checkboxgroup, and radiogroup. Accessible via 'p17-field' context.
+	// Options in the form [{ label, value }] required only for certain fields
+	// such as select, checkboxgroup, and radiogroup. Accessible via
+	// 'p17-field' context.
 	export let options
 
-	// Value of the field before formatting is applied. Accessible via 'p17-values' context.
+	// Value of the field before formatting is applied. Accessible via
+	// 'p17-values' context.
 	export let value
 
-	// Format value function to run just before submit. Accepts a field value and returns a formatted version. Accessible via 'p17-field' context.
+	// Format value function to run just before submit. Accepts a field value
+	// and returns a formatted version. Accessible via 'p17-field' context.
 	export let format
 
-	// Validation function to run just before submit. Accepts the field value and returns an error string, null, or undefined. Accessible via 'p17-field' context.
+	// Validation function to run just before submit. Accepts the field value
+	// and returns an error string, null, or undefined. Accessible via
+	// 'p17-field' context.
 	export let validate
 </script>
 

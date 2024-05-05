@@ -18,10 +18,10 @@
 	}
 
 	const updateChecked = () => {
-		const newer = isChecked($values[field.name])
+		const newState = isChecked($values[field.name])
 		// Avoid cyclic reactivity
-		if (checked !== newer) {
-			checked = newer
+		if (checked !== newState) {
+			checked = newState
 		}
 	}
 

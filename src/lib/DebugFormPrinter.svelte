@@ -3,13 +3,22 @@
 
 	//p24.description: Upon change, prints the fields, values, and errors stores.
 
-	//p24.let.fields: Enable printing for fields store (default: false unless values and errors props are also false).
+	/*p24.let.fields:
+		Enable printing for fields store (default: false unless values and errors
+		props are also false).
+	*/
 	export let fields = false
 
-	//p24.let.values: Enable printing for values store (default: false unless fields and errors props are also false).
+	/*p24.let.values:
+		Enable printing for values store (default: false unless fields and errors
+		props are also false).
+	*/
 	export let values = false
 
-	//p24.let.errors: Enable printing for errors store (default: false unless fields and values props are also false).
+	/*p24.let.errors:
+		Enable printing for errors store (default: false unless fields and values
+		props are also false).
+	*/
 	export let errors = false
 
 	if (!fields && !values && !errors) {
