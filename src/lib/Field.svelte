@@ -16,57 +16,45 @@
 	const values = getContext('p17-values')
 	const errors = getContext('p17-errors')
 
-	/*p24.let.type:
-		P17 Input type that will internally map to a HTML input type, e.g. text, number, phone, etc. Accessible via 'p17-field' context.
-	*/
+	//p24.let.type:
+	// P17 Input type that will internally map to a HTML input type,
+	// e.g. text, number, phone, etc.
 	export let type // = ""
 
-	/*p24.let.id:
-		Element id of the field. Accessible via 'p17-field' context.
-	*/
+	//p24.let.id:
+	// Element id of the field.
 	export let id = randomId()
 
-	/*p24.let.name:
-		Input name used as reference for the field within the fields, values, and
-		errors stores. Accessible via 'p17-field' context.
-	*/
+	//p24.let.name:
+	// Input name used as reference for the field within the fields, values, and
+	// errors stores.
 	export let name // = ""
 
-	/*p24.let.label:
-		Label or field heading. Accessible via 'p17-field' context.
-	*/
+	//p24.let.label:
+	// Label or field heading.
 	export let label = ''
 
-	/*p24.let.hint:
-		Hint usually appearing below the heading but above the input. Accessible
-		via 'p17-field' context.
-	*/
+	//p24.let.hint:
+	// Hint usually appearing below the heading but above the input.
 	export let hint = ''
 
-	/*p24.let.options:
-		Options in the form [{ label, value }] required only for certain fields
-		such as select, checkboxgroup, and radiogroup. Accessible via
-		'p17-field' context.
-	*/
+	//p24.let.options:
+	// Options in the form [{ label, value }] required only for certain fields
+	// such as select, checkboxgroup, and radiogroup.
 	export let options = null
 
-	/*p24.let.value:
-		Value of the field before formatting is applied. Accessible via
-		'p17-values' context.
-	*/
+	//p24.let.value:
+	// Value of the field before formatting is applied.
 	export let value = ''
 
-	/*p24.let.format:
-		Format value function to run just before submit. Accepts a field value
-		and returns a formatted version. Accessible via 'p17-field' context.
-	*/
+	//p24.let.format:
+	// Format value function to run just before submit. Accepts a field value
+	// and returns a formatted version.
 	export let format = undefined
 
-	/*p24.let.validate:
-		Validation function to run just before submit. Accepts the field value
-		and returns an error string, null, or undefined. Accessible via
-		'p17-field' context.
-	*/
+	//p24.let.validate:
+	// Validation function to run just before submit. Accepts the field value
+	// and returns an error string, null, or undefined.
 	export let validate = undefined
 
 	const field = {
@@ -85,6 +73,28 @@
 		initValue: value,
 	}
 
+	/*p24.context.p17-field:
+		All supplied and derived field properties except value and error which
+		are available via the 'p17-values' and 'p17-errors' contexts respectively.
+
+		The field object is also added to the list within the 'p17-fields' context.
+
+		$field = {
+			type,
+			id,
+			name,
+			labelElementId: `${id}-label`,
+			label,
+			hintElementId: `${id}-hint`,
+			hint,
+			inputElementId: `${id}-input`,
+			errorElementId: `${id}-error`,
+			options,
+			format,
+			validate,
+			initValue,
+		}
+	*/
 	setContext('p17-field', field)
 
 	fields.update((data) => {

@@ -90,10 +90,6 @@ Upon change, prints the fields, values, and errors stores.
 	// props are also false).
 	export let fields
 
-	// Enable printing for values store (default: false unless fields and errors
-	// props are also false).
-	export let values
-
 	// Enable printing for errors store (default: false unless fields and values
 	// props are also false).
 	export let errors
@@ -111,40 +107,59 @@ Renders a reactively updating table of field values.
 
 ```html
 <script>
-	// P17 Input type that will internally map to a HTML input type, e.g. text, number, phone, etc. Accessible via 'p17-field' context.
+	// P17 Input type that will internally map to a HTML input type,
+	// e.g. text, number, phone, etc.
 	export let type
 
-	// Element id of the field. Accessible via 'p17-field' context.
+	// Element id of the field.
 	export let id
 
 	// Input name used as reference for the field within the fields, values, and
-	// errors stores. Accessible via 'p17-field' context.
+	// errors stores.
 	export let name
 
-	// Label or field heading. Accessible via 'p17-field' context.
+	// Label or field heading.
 	export let label
 
-	// Hint usually appearing below the heading but above the input. Accessible
-	// via 'p17-field' context.
+	// Hint usually appearing below the heading but above the input.
 	export let hint
 
 	// Options in the form [{ label, value }] required only for certain fields
-	// such as select, checkboxgroup, and radiogroup. Accessible via
-	// 'p17-field' context.
+	// such as select, checkboxgroup, and radiogroup.
 	export let options
 
-	// Value of the field before formatting is applied. Accessible via
-	// 'p17-values' context.
+	// Value of the field before formatting is applied.
 	export let value
 
 	// Format value function to run just before submit. Accepts a field value
-	// and returns a formatted version. Accessible via 'p17-field' context.
+	// and returns a formatted version.
 	export let format
 
 	// Validation function to run just before submit. Accepts the field value
-	// and returns an error string, null, or undefined. Accessible via
-	// 'p17-field' context.
+	// and returns an error string, null, or undefined.
 	export let validate
+
+	// All supplied and derived field properties except value and error which
+	// are available via the 'p17-values' and 'p17-errors' contexts respectively.
+	// 
+	// The field object is also added to the list within the 'p17-fields' context.
+	// 
+	// $field = {
+	// type,
+	// id,
+	// name,
+	// labelElementId: `${id}-label`,
+	// label,
+	// hintElementId: `${id}-hint`,
+	// hint,
+	// inputElementId: `${id}-input`,
+	// errorElementId: `${id}-error`,
+	// options,
+	// format,
+	// validate,
+	// initValue,
+	// }
+	setContext('p17-field', ...)
 </script>
 
 <!-- Slot in anything before the field elements. -->
@@ -157,23 +172,49 @@ Renders a reactively updating table of field values.
 ### `<Form>`
 
 Primary component in which fields are slotted into.
+ $restProps are passed to the outer form element.
 
 ```html
 <script>
-	// Store of information about each named field. Accessible via 'p17-fields' context.
+	// Store containing fields referenced by their input name.
 	export const fields
 
-	// Store of errors, one for each named field. Accessible via 'p17-errors' context.
+	// Store containing error messages referenced by their input name.
+	// An empty string represents either no error or unvalidated.
 	export const values
 
-	// Element id of the form. Accessible via 'p17-form' context.
+	// Store containing the passed form level properties.
+	// 
+	// $form = {
+	// id,
+	// validate,
+	// submit,
+	// }
+	export const form
+
+	// Element id of the form.
 	export let id
 
-	// Function for validating all fields. It accepts a field name to value object and must return a field name to errors object. Accessible via 'p17-form' context.
+	// Function for validating all fields. It accepts a field name to value
+	// object and must return a field name to errors object.
 	export let validate
 
-	// Function for submitting the form. It accepts a field name to value object. Accessible via 'p17-form' context.
+	// Function for submitting the form. It accepts a field name to value
+	// object.
 	export let submit
+
+	// See fields property.
+	setContext('p17-fields', ...)
+
+	// See values property.
+	setContext('p17-values', ...)
+
+	// See errors property.
+	setContext('p17-errors', ...)
+
+	// Store containing error messages referenced by their input name.
+	// An empty string represents either no error or unvalidated.
+	setContext('p17-form', ...)
 </script>
 
 <!-- Form fields, buttons, and anything else you fancy. -->
