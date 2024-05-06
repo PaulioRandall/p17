@@ -80,19 +80,19 @@
 		The field object is also added to the list within the 'p17-fields' context.
 
 		$field = {
-			type,
-			id,
-			name,
-			labelElementId: `${id}-label`,
-			label,
-			hintElementId: `${id}-hint`,
-			hint,
-			inputElementId: `${id}-input`,
-			errorElementId: `${id}-error`,
-			options,
-			format,
-			validate,
-			initValue,
+		  type,
+		  id,
+		  name,
+		  labelElementId: `${id}-label`,
+		  label,
+		  hintElementId: `${id}-hint`,
+		  hint,
+		  inputElementId: `${id}-input`,
+		  errorElementId: `${id}-error`,
+		  options,
+		  format,
+		  validate,
+		  initValue,
 		}
 	*/
 	setContext('p17-field', field)

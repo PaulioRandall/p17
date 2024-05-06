@@ -6,7 +6,7 @@
 
 	//p24.description:
 	// Primary component in which fields are slotted into.
-	// $$restProps are passed to the outer form element.
+	// $$restProps are passed to the form element (outer component element).
 
 	//p24.const.fields:
 	// Store containing fields referenced by their input name.
@@ -62,8 +62,7 @@
 	setContext('p17-errors', errors)
 
 	//p24.context.p17-form:
-	// Store containing error messages referenced by their input name.
-	// An empty string represents either no error or unvalidated.
+	// See form property.
 	setContext('p17-form', form)
 
 	$: hasErrors = Object.values($errors).length > 0

@@ -145,20 +145,21 @@ Renders a reactively updating table of field values.
 	// The field object is also added to the list within the 'p17-fields' context.
 	// 
 	// $field = {
-	// type,
-	// id,
-	// name,
-	// labelElementId: `${id}-label`,
-	// label,
-	// hintElementId: `${id}-hint`,
-	// hint,
-	// inputElementId: `${id}-input`,
-	// errorElementId: `${id}-error`,
-	// options,
-	// format,
-	// validate,
-	// initValue,
+	//   type,
+	//   id,
+	//   name,
+	//   labelElementId: `${id}-label`,
+	//   label,
+	//   hintElementId: `${id}-hint`,
+	//   hint,
+	//   inputElementId: `${id}-input`,
+	//   errorElementId: `${id}-error`,
+	//   options,
+	//   format,
+	//   validate,
+	//   initValue,
 	// }
+	// 
 	setContext('p17-field', ...)
 </script>
 
@@ -172,7 +173,7 @@ Renders a reactively updating table of field values.
 ### `<Form>`
 
 Primary component in which fields are slotted into.
- $restProps are passed to the outer form element.
+$restProps are passed to the form element (outer component element).
 
 ```html
 <script>
@@ -186,9 +187,9 @@ Primary component in which fields are slotted into.
 	// Store containing the passed form level properties.
 	// 
 	// $form = {
-	// id,
-	// validate,
-	// submit,
+	//   id,
+	//   validate,
+	//   submit,
 	// }
 	export const form
 
@@ -212,11 +213,13 @@ Primary component in which fields are slotted into.
 	// See errors property.
 	setContext('p17-errors', ...)
 
-	// Store containing error messages referenced by their input name.
-	// An empty string represents either no error or unvalidated.
+	// See form property.
 	setContext('p17-form', ...)
 </script>
 
-<!-- Form fields, buttons, and anything else you fancy. -->
+<!--
+	Form fields, buttons, and anything else you fancy.
+	
+-->
 <slot />
 ```
