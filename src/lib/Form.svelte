@@ -10,29 +10,35 @@
 
 	//p24.const.fields:
 	// Store containing fields referenced by their input name.
+	//p24.default.const.fields: writable({})
 	export const fields = writable({})
 
 	//p24.const.values:
 	// Store containing values referenced by their input name.
+	//p24.default.const.values: writable({})
 	export const values = writable({})
 
 	//p24.const.values:
 	// Store containing error messages referenced by their input name.
 	// An empty string represents either no error or unvalidated.
+	//p24.default.const.errors: writable({})
 	export const errors = writable({})
 
 	//p24.let.id:
 	// Element id of the form.
+	//p24.default.let.id: /* Randomly assigned ID. */
 	export let id = randomId()
 
 	//p24.let.validate:
 	// Function for validating all fields. It accepts a field name to value
 	// object and must return a field name to errors object.
+	//p24.default.let.validate: null
 	export let validate = null /* (values) => { return {} } */
 
 	//p24.let.submit:
 	// Function for submitting the form. It accepts a field name to value
 	// object.
+	//p24.default.let.submit: null
 	export let submit = null // async (values) => {}
 
 	//p24.const.form:
@@ -43,6 +49,7 @@
 	//   validate,
 	//   submit,
 	// }
+	//p24.default.const.form: writable({})
 	export const form = writable({
 		id,
 		validate,

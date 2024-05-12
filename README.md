@@ -16,7 +16,7 @@ My library's unique selling point is that the field unvalidates when a user focu
 
 ## Made to be Plundered
 
-This library is made to be forked or plundered by anyone for whatever you want as long as you adhere to the permissive MIT license. You can do whatever. Just make sure to break rules and innovate!
+This library is made to be forked or plundered by anyone for whatever you want as long as you adhere to the permissive MIT license. Break rules and innovate!
 
 ## Components
 
@@ -26,11 +26,11 @@ On click, populates specified form fields with specified values.
 
 ```html
 <script>
-	// Button text (default: "Populate").
-	export let label
+	// Button text.
+	export let label = "Populate"
 
 	// Object of field name:value entries to populate.
-	export let values
+	export let values = {}
 </script>
 ```
 
@@ -40,12 +40,11 @@ On click, resets the form fields to their initial values.
 
 ```html
 <script>
-	// Button text (default: "Reset").
-	export let label
+	// Button text.
+	export let label = "Reset"
 
-	// True to reset values to empty strings rather than initial values
-	// (default: false).
-	export let clear
+	// True to reset values to empty strings rather than initial values.
+	export let clear = false
 </script>
 ```
 
@@ -55,8 +54,8 @@ On click, validates and submits the form.
 
 ```html
 <script>
-	// Button text (default: "Submit").
-	export let label
+	// Button text.
+	export let label = "Submit"
 </script>
 ```
 
@@ -66,8 +65,8 @@ On click, sets all fields to the unvalidated state.
 
 ```html
 <script>
-	// Button text (default: "Unvalidate").
-	export let label
+	// Button text.
+	export let label = "Unvalidate"
 </script>
 ```
 
@@ -86,13 +85,11 @@ Upon change, prints the fields, values, and errors stores.
 
 ```html
 <script>
-	// Enable printing for fields store (default: false unless values and errors
-	// props are also false).
-	export let fields
+	// Enable printing for fields store.
+	export let fields = false // unless 'values' and 'errors' are also false
 
-	// Enable printing for errors store (default: false unless fields and values
-	// props are also false).
-	export let errors
+	// Enable printing for errors store.
+	export let errors = false // unless 'fields' and 'values' are also false
 </script>
 
 <!-- Anything you like. -->
@@ -112,32 +109,32 @@ Renders a reactively updating table of field values.
 	export let type
 
 	// Element id of the field.
-	export let id
+	export let id = /* Randomly assigned ID. */
 
 	// Input name used as reference for the field within the fields, values, and
 	// errors stores.
 	export let name
 
 	// Label or field heading.
-	export let label
+	export let label = ""
 
 	// Hint usually appearing below the heading but above the input.
-	export let hint
+	export let hint = ""
 
 	// Options in the form [{ label, value }] required only for certain fields
 	// such as select, checkboxgroup, and radiogroup.
-	export let options
+	export let options = null
 
 	// Value of the field before formatting is applied.
-	export let value
+	export let value = ""
 
 	// Format value function to run just before submit. Accepts a field value
 	// and returns a formatted version.
-	export let format
+	export let format = undefined
 
 	// Validation function to run just before submit. Accepts the field value
 	// and returns an error string, null, or undefined.
-	export let validate
+	export let validate = undefined
 
 	// All supplied and derived field properties except value and error which
 	// are available via the 'p17-values' and 'p17-errors' contexts respectively.
@@ -159,14 +156,13 @@ Renders a reactively updating table of field values.
 	//   validate,
 	//   initValue,
 	// }
-	// 
 	setContext('p17-field', ...)
 </script>
 
-<!-- Slot in anything before the field elements. -->
+<!-- Anything you want before the core field elements. -->
 <slot name="before" />
 
-<!-- Slot in anything after the field elements. -->
+<!-- Anything you want after the core field elements. -->
 <slot name="after" />
 ```
 
@@ -178,11 +174,11 @@ $restProps are passed to the form element (outer component element).
 ```html
 <script>
 	// Store containing fields referenced by their input name.
-	export const fields
+	export const fields = writable({})
 
 	// Store containing error messages referenced by their input name.
 	// An empty string represents either no error or unvalidated.
-	export const values
+	export const values = writable({})
 
 	// Store containing the passed form level properties.
 	// 
@@ -191,18 +187,18 @@ $restProps are passed to the form element (outer component element).
 	//   validate,
 	//   submit,
 	// }
-	export const form
+	export const form = writable({})
 
 	// Element id of the form.
-	export let id
+	export let id = /* Randomly assigned ID. */
 
 	// Function for validating all fields. It accepts a field name to value
 	// object and must return a field name to errors object.
-	export let validate
+	export let validate = null
 
 	// Function for submitting the form. It accepts a field name to value
 	// object.
-	export let submit
+	export let submit = null
 
 	// See fields property.
 	setContext('p17-fields', ...)
@@ -217,9 +213,6 @@ $restProps are passed to the form element (outer component element).
 	setContext('p17-form', ...)
 </script>
 
-<!--
-	Form fields, buttons, and anything else you fancy.
-	
--->
+<!-- Form fields, buttons, and anything else you fancy. -->
 <slot />
 ```

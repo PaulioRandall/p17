@@ -4,10 +4,12 @@
 	//p24.description:
 	// On click, populates specified form fields with specified values.
 
-	//p24.let.label: Button text (default: "Populate").
+	//p24.let.label: Button text.
+	//p24.default.let.label: "Populate"
 	export let label = 'Populate'
 
 	//p24.let.values: Object of field name:value entries to populate.
+	//p24.default.let.values: {}
 	export let values = {}
 
 	const fieldStore = getContext('p17-fields')

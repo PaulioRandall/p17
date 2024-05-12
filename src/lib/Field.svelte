@@ -23,6 +23,7 @@
 
 	//p24.let.id:
 	// Element id of the field.
+	//p24.default.let.id: /* Randomly assigned ID. */
 	export let id = randomId()
 
 	//p24.let.name:
@@ -32,29 +33,35 @@
 
 	//p24.let.label:
 	// Label or field heading.
+	//p24.default.let.label: ""
 	export let label = ''
 
 	//p24.let.hint:
 	// Hint usually appearing below the heading but above the input.
+	//p24.default.let.hint: ""
 	export let hint = ''
 
 	//p24.let.options:
 	// Options in the form [{ label, value }] required only for certain fields
 	// such as select, checkboxgroup, and radiogroup.
+	//p24.default.let.options: null
 	export let options = null
 
 	//p24.let.value:
 	// Value of the field before formatting is applied.
+	//p24.default.let.value: ""
 	export let value = ''
 
 	//p24.let.format:
 	// Format value function to run just before submit. Accepts a field value
 	// and returns a formatted version.
+	//p24.default.let.format: undefined
 	export let format = undefined
 
 	//p24.let.validate:
 	// Validation function to run just before submit. Accepts the field value
 	// and returns an error string, null, or undefined.
+	//p24.default.let.validate: undefined
 	export let validate = undefined
 
 	const field = {
@@ -131,7 +138,7 @@
 	<HiddenInput {...$$restProps} />
 {:else}
 	<FieldContainer>
-		<!--p24.slot.before: Slot in anything before the field elements. -->
+		<!--p24.slot.before: Anything you want before the core field elements. -->
 		<slot name="before" />
 		{#if textualTypes.includes(type)}
 			<TextualInput {...$$restProps} />
@@ -146,7 +153,7 @@
 		{:else if type === 'select' || type === 'dropdown'}
 			<SelectInput {...$$restProps} />
 		{/if}
-		<!--p24.slot.after: Slot in anything after the field elements. -->
+		<!--p24.slot.after: Anything you want after the core field elements. -->
 		<slot name="after" />
 	</FieldContainer>
 {/if}
