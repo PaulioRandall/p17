@@ -88,6 +88,9 @@ Upon change, prints the fields, values, and errors stores.
 	// Enable printing for fields store.
 	export let fields = false // unless 'values' and 'errors' are also false
 
+	// Enable printing for values store.
+	export let values = false // unless 'fields' and 'errors' are also false
+
 	// Enable printing for errors store.
 	export let errors = false // unless 'fields' and 'values' are also false
 </script>
@@ -173,12 +176,15 @@ $restProps are passed to the form element (outer component element).
 
 ```html
 <script>
-	// Store containing fields referenced by their input name.
+	// Store containing fields referenced by their input names.
 	export const fields = writable({})
 
-	// Store containing error messages referenced by their input name.
-	// An empty string represents either no error or unvalidated.
+	// Store containing values referenced by their input names.
 	export const values = writable({})
+
+	// Store containing error messages referenced by their input names.
+	// An empty string represents either no error or unvalidated.
+	export const errors = writable({})
 
 	// Store containing the passed form level properties.
 	// 

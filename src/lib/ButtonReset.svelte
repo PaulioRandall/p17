@@ -1,16 +1,16 @@
 <script>
 	import { getContext } from 'svelte'
 
-	//p24.description:
+	//p24.desc:
 	// On click, resets the form fields to their initial values.
 
-	//p24.let.label: Button text.
-	//p24.default.let.label: "Reset"
+	//p24.p.l.label: Button text.
+	//p24.d.p.l.label: "Reset"
 	export let label = 'Reset'
 
-	//p24.let.clear:
+	//p24.p.l.clear:
 	// True to reset values to empty strings rather than initial values.
-	//p24.default.let.clear: false
+	//p24.d.p.l.clear: false
 	export let clear = false
 
 	const fieldStore = getContext('p17-fields')

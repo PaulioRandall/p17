@@ -1,10 +1,10 @@
 <script>
 	import { getContext } from 'svelte'
 
-	//p24.description: On click, validates and submits the form.
+	//p24.desc: On click, validates and submits the form.
 
-	//p24.let.label: Button text.
-	//p24.default.let.label: "Submit"
+	//p24.p.l.label: Button text.
+	//p24.d.p.l.label: "Submit"
 	export let label = 'Submit'
 
 	const form = getContext('p17-form')
