@@ -16,7 +16,7 @@ My library's unique selling point is that the field unvalidates when a user focu
 
 ## Made to be Plundered
 
-This library is made to be forked or plundered by anyone for whatever you want as long as you adhere to the permissive MIT license. Break rules and innovate!
+Do whatever you like as long as you adhere to the permissive MIT license found within.
 
 ## Components
 

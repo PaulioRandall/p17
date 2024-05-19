@@ -26,7 +26,7 @@
 
 	//p24.p.l.id:
 	// Element id of the form.
-	//p24.d.p.l.id: /* Randomly assigned ID. */
+	//p24.d.p.l.id: /* = Randomly assigned ID. */
 	export let id = randomId()
 
 	//p24.p.l.validate:

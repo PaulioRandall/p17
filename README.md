@@ -16,7 +16,7 @@ My library's unique selling point is that the field unvalidates when a user focu
 
 ## Made to be Plundered
 
-This library is made to be forked or plundered by anyone for whatever you want as long as you adhere to the permissive MIT license. Break rules and innovate!
+Do whatever you like as long as you adhere to the permissive MIT license found within.
 
 ## Components
 
@@ -112,7 +112,7 @@ Renders a reactively updating table of field values.
 	export let type
 
 	// Element id of the field.
-	export let id = /* Randomly assigned ID. */
+	export let id /* Randomly assigned ID. */
 
 	// Input name used as reference for the field within the fields, values, and
 	// errors stores.
@@ -196,7 +196,7 @@ $restProps are passed to the form element (outer component element).
 	export const form = writable({})
 
 	// Element id of the form.
-	export let id = /* Randomly assigned ID. */
+	export let id /* = Randomly assigned ID. */
 
 	// Function for validating all fields. It accepts a field name to value
 	// object and must return a field name to errors object.
