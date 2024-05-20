@@ -20,4 +20,4 @@ Do whatever as long as you adhere to the permissive MIT license found within.
 
 ## Components
 
-{{DOCS}}
+{{PLACEHOLDER}}
