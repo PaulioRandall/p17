@@ -37,7 +37,7 @@ On click, populates specified form fields with specified values.
 ```svelte
 <ButtonPopulate
   label="Populate"
-  values={{}}>
+  values={{}} />
 ```
 
 ### `<ButtonReset>`
@@ -57,7 +57,7 @@ On click, resets the form fields to their initial values.
 ```svelte
 <ButtonReset
   label="Reset"
-  clear={false}>
+  clear={false} />
 ```
 
 ### `<ButtonSubmit>`
@@ -73,7 +73,7 @@ On click, validates and submits the form.
 
 ```svelte
 <ButtonSubmit
-  label="Submit">
+  label="Submit" />
 ```
 
 ### `<ButtonUnvalidate>`
@@ -89,7 +89,7 @@ On click, sets all fields to the unvalidated state.
 
 ```svelte
 <ButtonUnvalidate
-  label="Unvalidate">
+  label="Unvalidate" />
 ```
 
 ### `<DebugFieldPrinter>`
@@ -103,6 +103,8 @@ Upon change, prints a field's value and error values.
 
 ```svelte
 <DebugFieldPrinter>
+  <template />
+</DebugFieldPrinter>
 ```
 
 ### `<DebugFormPrinter>`
@@ -130,6 +132,8 @@ Upon change, prints the fields, values, and errors stores.
   fields={false /* unless 'values' and 'errors' are also false */}
   values={false /* unless 'fields' and 'errors' are also false */}
   errors={false /* unless 'fields' and 'values' are also false */}>
+  <template />
+</DebugFormPrinter>
 ```
 
 ### `<DebugFormTable>`
@@ -137,7 +141,7 @@ Upon change, prints the fields, values, and errors stores.
 Renders a reactively updating table of field values.
 
 ```svelte
-<DebugFormTable>
+<DebugFormTable />
 ```
 
 ### `<Field>`
@@ -217,6 +221,9 @@ Renders a reactively updating table of field values.
   value=""
   format={undefined}
   validate={undefined}>
+  <template slot="before" />
+  <template slot="after" />
+</Field>
 ```
 
 ### `<Form>`
@@ -282,4 +289,6 @@ $restProps are passed to the form element (outer component element).
   id={/* = Randomly assigned ID. */}
   validate={null}
   submit={null}>
+  <template />
+</Form>
 ```
