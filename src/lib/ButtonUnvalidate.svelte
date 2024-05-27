@@ -3,8 +3,8 @@
 
 	//p24.desc: On click, sets all fields to the unvalidated state.
 
-	//p24.p.l.label: Button text.
-	//p24.d.p.l.label: "Unvalidate"
+	//p24.p.let.label: Button text.
+	//p24.d.p.let.label: "Unvalidate"
 	export let label = 'Unvalidate'
 
 	const fields = getContext('p17-fields')

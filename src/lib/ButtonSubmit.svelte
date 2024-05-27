@@ -3,8 +3,8 @@
 
 	//p24.desc: On click, validates and submits the form.
 
-	//p24.p.l.label: Button text.
-	//p24.d.p.l.label: "Submit"
+	//p24.p.let.label: Button text.
+	//p24.d.p.let.label: "Submit"
 	export let label = 'Submit'
 
 	const form = getContext('p17-form')

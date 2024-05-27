@@ -3,19 +3,19 @@
 
 	//p24.desc: Upon change, prints the fields, values, and errors stores.
 
-	//p24.p.l.fields:
+	//p24.p.let.fields:
 	// Enable printing for fields store.
-	//p24.d.p.l.fields: false /* unless 'values' and 'errors' are also false */
+	//p24.d.p.let.fields: false /* unless 'values' and 'errors' are also false */
 	export let fields = false
 
-	//p24.p.l.values:
+	//p24.p.let.values:
 	// Enable printing for values store.
-	//p24.d.p.l.values: false /* unless 'fields' and 'errors' are also false */
+	//p24.d.p.let.values: false /* unless 'fields' and 'errors' are also false */
 	export let values = false
 
-	//p24.p.l.errors:
+	//p24.p.let.errors:
 	// Enable printing for errors store.
-	//p24.d.p.l.errors: false /* unless 'fields' and 'values' are also false */
+	//p24.d.p.let.errors: false /* unless 'fields' and 'values' are also false */
 	export let errors = false
 
 	if (!fields && !values && !errors) {
@@ -37,5 +37,5 @@
 	$: browser && errors && $errorStore && console.log('errors', $errorStore)
 </script>
 
-<!--p24.s.default: Anything you like.-->
+<!--p24.slot.default: Anything you like.-->
 <slot />

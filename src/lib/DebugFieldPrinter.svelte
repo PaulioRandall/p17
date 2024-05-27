@@ -37,5 +37,5 @@
 	$: browser && console.log(`errors.${field.name} (state):`, errorState)
 </script>
 
-<!--p24.s.default: Anything you like.-->
+<!--p24.slot.default: Anything you like.-->
 <slot />

@@ -4,13 +4,13 @@
 	//p24.desc:
 	// On click, resets the form fields to their initial values.
 
-	//p24.p.l.label: Button text.
-	//p24.d.p.l.label: "Reset"
+	//p24.p.let.label: Button text.
+	//p24.d.p.let.label: "Reset"
 	export let label = 'Reset'
 
-	//p24.p.l.clear:
+	//p24.p.let.clear:
 	// True to reset values to empty strings rather than initial values.
-	//p24.d.p.l.clear: false
+	//p24.d.p.let.clear: false
 	export let clear = false
 
 	const fieldStore = getContext('p17-fields')
