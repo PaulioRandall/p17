@@ -103,7 +103,7 @@ Upon change, prints a field's value and error values.
 
 ```svelte
 <DebugFieldPrinter>
-  <template />
+  <tag />
 </DebugFieldPrinter>
 ```
 
@@ -132,7 +132,7 @@ Upon change, prints the fields, values, and errors stores.
   fields={false /* unless 'values' and 'errors' are also false */}
   values={false /* unless 'fields' and 'errors' are also false */}
   errors={false /* unless 'fields' and 'values' are also false */}>
-  <template />
+  <tag />
 </DebugFormPrinter>
 ```
 
@@ -221,8 +221,8 @@ Renders a reactively updating table of field values.
   value=""
   format={undefined}
   validate={undefined}>
-  <template slot="before" />
-  <template slot="after" />
+  <tag slot="before" />
+  <tag slot="after" />
 </Field>
 ```
 
@@ -289,6 +289,6 @@ $restProps are passed to the form element (outer component element).
   id={/* = Randomly assigned ID. */}
   validate={null}
   submit={null}>
-  <template />
+  <tag />
 </Form>
 ```
