@@ -29,15 +29,16 @@ On click, populates specified form fields with specified values.
 	// Button text.
 	export let label = "Populate"
 
-	// Object of field name:value entries to populate.
+	// Values to populate the form with.
 	export let values = {}
 </script>
 ```
 
 ```svelte
 <ButtonPopulate
-  label="Populate"
-  values={{}} />
+	label="Populate"
+	values={{}}
+/>
 ```
 
 ### `<ButtonReset>`
@@ -49,15 +50,16 @@ On click, resets the form fields to their initial values.
 	// Button text.
 	export let label = "Reset"
 
-	// True to reset values to empty strings rather than initial values.
+	// True to reset the values to empty strings rather than their initial values.
 	export let clear = false
 </script>
 ```
 
 ```svelte
 <ButtonReset
-  label="Reset"
-  clear={false} />
+	label="Reset"
+	clear={false}
+/>
 ```
 
 ### `<ButtonSubmit>`
@@ -73,7 +75,8 @@ On click, validates and submits the form.
 
 ```svelte
 <ButtonSubmit
-  label="Submit" />
+	label="Submit"
+/>
 ```
 
 ### `<ButtonUnvalidate>`
@@ -89,7 +92,8 @@ On click, sets all fields to the unvalidated state.
 
 ```svelte
 <ButtonUnvalidate
-  label="Unvalidate" />
+	label="Unvalidate"
+/>
 ```
 
 ### `<DebugFieldPrinter>`
@@ -103,7 +107,7 @@ Upon change, prints a field's value and error values.
 
 ```svelte
 <DebugFieldPrinter>
-  <tag />
+	<div />
 </DebugFieldPrinter>
 ```
 
@@ -129,10 +133,11 @@ Upon change, prints the fields, values, and errors stores.
 
 ```svelte
 <DebugFormPrinter
-  fields={false /* unless 'values' and 'errors' are also false */}
-  values={false /* unless 'fields' and 'errors' are also false */}
-  errors={false /* unless 'fields' and 'values' are also false */}>
-  <tag />
+	fields={false /* unless 'values' and 'errors' are also false */}
+	values={false /* unless 'fields' and 'errors' are also false */}
+	errors={false /* unless 'fields' and 'values' are also false */}
+>
+	<div />
 </DebugFormPrinter>
 ```
 
@@ -146,18 +151,20 @@ Renders a reactively updating table of field values.
 
 ### `<Field>`
 
+Represents a form field.
+
 ```svelte
 <script>
 	// P17 Input type that will internally map to a HTML input type,
 	// e.g. text, number, phone, etc.
-	export let type
+	export let type:
 
 	// Element id of the field.
-	export let id /* Randomly assigned ID. */
+	export let id:
 
 	// Input name used as reference for the field within the fields, values, and
 	// errors stores.
-	export let name
+	export let name:
 
 	// Label or field heading.
 	export let label = ""
@@ -181,26 +188,26 @@ Renders a reactively updating table of field values.
 	export let validate = undefined
 
 	// All supplied and derived field properties except value and error which
-	// are available via the 'p17-values' and 'p17-errors' contexts respectively.
+	// 		are available via the 'p17-values' and 'p17-errors' contexts respectively.
 	// 
-	// The field object is also added to the list within the 'p17-fields' context.
+	// 		The field object is also added to the list within the 'p17-fields' context.
 	// 
-	// $field = {
-	//   type,
-	//   id,
-	//   name,
-	//   labelElementId: `${id}-label`,
-	//   label,
-	//   hintElementId: `${id}-hint`,
-	//   hint,
-	//   inputElementId: `${id}-input`,
-	//   errorElementId: `${id}-error`,
-	//   options,
-	//   format,
-	//   validate,
-	//   initValue,
-	// }
-	setContext('p17-field', ...)
+	// 		$field = {
+	// 		  type,
+	// 		  id,
+	// 		  name,
+	// 		  labelElementId: `${id}-label`,
+	// 		  label,
+	// 		  hintElementId: `${id}-hint`,
+	// 		  hint,
+	// 		  inputElementId: `${id}-input`,
+	// 		  errorElementId: `${id}-error`,
+	// 		  options,
+	// 		  format,
+	// 		  validate,
+	// 		  initValue,
+	// 		}
+	setContext("p17-field", ...)
 </script>
 
 <!-- Anything you want before the core field elements. -->
@@ -212,17 +219,18 @@ Renders a reactively updating table of field values.
 
 ```svelte
 <Field
-  type
-  id={/* Randomly assigned ID. */}
-  name
-  label=""
-  hint=""
-  options={null}
-  value=""
-  format={undefined}
-  validate={undefined}>
-  <tag slot="before" />
-  <tag slot="after" />
+	type:
+	id:
+	name:
+	label=""
+	hint=""
+	options={null}
+	value=""
+	format={undefined}
+	validate={undefined}
+>
+	<div slot="before" />
+	<div slot="after" />
 </Field>
 ```
 
@@ -232,28 +240,32 @@ Primary component in which fields are slotted into.
 $restProps are passed to the form element (outer component element).
 
 ```svelte
-<script>
+<script context="module">
 	// Store containing fields referenced by their input names.
-	export const fields = writable({})
+	export let fields = writable({})
 
 	// Store containing values referenced by their input names.
-	export const values = writable({})
+	export let values = writable({})
 
 	// Store containing error messages referenced by their input names.
 	// An empty string represents either no error or unvalidated.
-	export const errors = writable({})
+	export let errors = writable({})
 
 	// Store containing the passed form level properties.
 	// 
 	// $form = {
-	//   id,
-	//   validate,
-	//   submit,
+	//    id,
+	//    validate,
+	//    submit,
 	// }
-	export const form = writable({})
+	export let form = writable({})
+</script>
+```
 
+```svelte
+<script>
 	// Element id of the form.
-	export let id /* = Randomly assigned ID. */
+	export let id = /* = Randomly assigned ID. */
 
 	// Function for validating all fields. It accepts a field name to value
 	// object and must return a field name to errors object.
@@ -264,16 +276,16 @@ $restProps are passed to the form element (outer component element).
 	export let submit = null
 
 	// See fields property.
-	setContext('p17-fields', ...)
+	setContext("p17-fields", ...)
 
 	// See values property.
-	setContext('p17-values', ...)
+	setContext("p17-values", ...)
 
 	// See errors property.
-	setContext('p17-errors', ...)
+	setContext("p17-errors", ...)
 
 	// See form property.
-	setContext('p17-form', ...)
+	setContext("p17-form", ...)
 </script>
 
 <!-- Form fields, buttons, and anything else you fancy. -->
@@ -282,13 +294,10 @@ $restProps are passed to the form element (outer component element).
 
 ```svelte
 <Form
-  bind:fields={writable({})}
-  bind:values={writable({})}
-  bind:errors={writable({})}
-  bind:form={writable({})}
-  id={/* = Randomly assigned ID. */}
-  validate={null}
-  submit={null}>
-  <tag />
+	id={/* = Randomly assigned ID. */}
+	validate={null}
+	submit={null}
+>
+	<div />
 </Form>
 ```

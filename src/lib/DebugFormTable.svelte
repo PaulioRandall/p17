@@ -1,7 +1,8 @@
 <script>
 	import { getContext } from 'svelte'
 
-	//p24.desc: Renders a reactively updating table of field values.
+	//@component
+	// Renders a reactively updating table of field values.
 
 	const fields = getContext('p17-fields')
 	const values = getContext('p17-values')

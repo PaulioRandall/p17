@@ -1,10 +1,12 @@
 <script>
 	import { getContext } from 'svelte'
 
-	//p24.desc: On click, sets all fields to the unvalidated state.
+	//@component
+	// On click, sets all fields to the unvalidated state.
 
-	//p24.p.let.label: Button text.
-	//p24.d.p.let.label: "Unvalidate"
+	//@prop label
+	// Button text.
+	// @default "Unvalidate"
 	export let label = 'Unvalidate'
 
 	const fields = getContext('p17-fields')
