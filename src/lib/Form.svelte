@@ -44,16 +44,17 @@
 	// @default null
 	export let submit = null // async (values) => {}
 
-	//@prop form
-	// Store containing the passed form level properties.
-	//
-	// $form = {
-	//   id,
-	//   validate,
-	//   submit,
-	// }
-	// @module
-	// @default writable({})
+	/*@prop form
+		Store containing the passed form level properties.
+	
+		$form = {
+		  id,
+		  validate,
+		  submit,
+		}
+		@module
+		@default writable({})
+	*/
 	export const form = writable({
 		id,
 		validate,

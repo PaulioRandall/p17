@@ -19,17 +19,17 @@
 	const values = getContext('p17-values')
 	const errors = getContext('p17-errors')
 
-	//@prop type:
+	//@prop type
 	// P17 Input type that will internally map to a HTML input type,
 	// e.g. text, number, phone, etc.
 	export let type // = ""
 
-	//@prop id:
+	//@prop id
 	// Element id of the field.
 	//@default id: /* Randomly assigned ID. */
 	export let id = randomId()
 
-	//@prop name:
+	//@prop name
 	// Input name used as reference for the field within the fields, values, and
 	// errors stores.
 	export let name // = ""

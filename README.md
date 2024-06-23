@@ -157,14 +157,14 @@ Represents a form field.
 <script>
 	// P17 Input type that will internally map to a HTML input type,
 	// e.g. text, number, phone, etc.
-	export let type:
+	export let type
 
 	// Element id of the field.
-	export let id:
+	export let id
 
 	// Input name used as reference for the field within the fields, values, and
 	// errors stores.
-	export let name:
+	export let name
 
 	// Label or field heading.
 	export let label = ""
@@ -188,25 +188,25 @@ Represents a form field.
 	export let validate = undefined
 
 	// All supplied and derived field properties except value and error which
-	// 		are available via the 'p17-values' and 'p17-errors' contexts respectively.
+	// are available via the 'p17-values' and 'p17-errors' contexts respectively.
 	// 
-	// 		The field object is also added to the list within the 'p17-fields' context.
+	// The field object is also added to the list within the 'p17-fields' context.
 	// 
-	// 		$field = {
-	// 		  type,
-	// 		  id,
-	// 		  name,
-	// 		  labelElementId: `${id}-label`,
-	// 		  label,
-	// 		  hintElementId: `${id}-hint`,
-	// 		  hint,
-	// 		  inputElementId: `${id}-input`,
-	// 		  errorElementId: `${id}-error`,
-	// 		  options,
-	// 		  format,
-	// 		  validate,
-	// 		  initValue,
-	// 		}
+	// $field = {
+	//   type,
+	//   id,
+	//   name,
+	//   labelElementId: `${id}-label`,
+	//   label,
+	//   hintElementId: `${id}-hint`,
+	//   hint,
+	//   inputElementId: `${id}-input`,
+	//   errorElementId: `${id}-error`,
+	//   options,
+	//   format,
+	//   validate,
+	//   initValue,
+	// }
 	setContext("p17-field", ...)
 </script>
 
@@ -219,9 +219,9 @@ Represents a form field.
 
 ```svelte
 <Field
-	type:
-	id:
-	name:
+	type
+	id
+	name
 	label=""
 	hint=""
 	options={null}
@@ -254,9 +254,9 @@ $restProps are passed to the form element (outer component element).
 	// Store containing the passed form level properties.
 	// 
 	// $form = {
-	//    id,
-	//    validate,
-	//    submit,
+	//   id,
+	//   validate,
+	//   submit,
 	// }
 	export let form = writable({})
 </script>
