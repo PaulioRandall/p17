@@ -1,6 +1,6 @@
 <script>
 	import { setContext } from 'svelte'
-	import { writable } from 'svelte/store'
+	import { writable, readable } from 'svelte/store'
 	import { randomId } from './private/shared'
 	import ThemeDefault from './private/ThemeDefault.svelte'
 
@@ -52,10 +52,11 @@
 		  validate,
 		  submit,
 		}
+
 		@module
-		@default writable({})
+		@default readable({})
 	*/
-	export const form = writable({
+	export const form = readable({
 		id,
 		validate,
 		submit,

@@ -2,21 +2,21 @@
 	import { getContext } from 'svelte'
 
 	//@component
-	// Upon change, prints the fields, values, and errors stores.
+	// Upon change, prints the value of fields, values, and errors stores.
 
 	//@prop fields
 	// Enable printing for fields store.
-	// @default false /* unless 'values' and 'errors' are also false */
+	// @default !values && !errors
 	export let fields = false
 
 	//@prop values
 	// Enable printing for values store.
-	// @default false /* unless 'fields' and 'errors' are also false */
+	// @default !fields && !errors
 	export let values = false
 
 	//@prop errors
 	// Enable printing for errors store.
-	// @default false /* unless 'fields' and 'values' are also false */
+	// @default !fields && !values
 	export let errors = false
 
 	if (!fields && !values && !errors) {
