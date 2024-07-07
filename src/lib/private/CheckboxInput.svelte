@@ -7,8 +7,9 @@
 	import metatypes from '../metatypes'
 
 	const field = getContext('p17-field')
-	const values = getContext('p17-values')
-	const errors = getContext('p17-errors')
+	const form = getContext('p17-form')
+	const valueStore = $form.valueStore
+	const errorStore = $form.errorStore
 
 	const metatype = metatypes[field.type]
 	field.metatype = metatype
@@ -18,7 +19,7 @@
 	}
 
 	const updateChecked = () => {
-		const newState = isChecked($values[field.name])
+		const newState = isChecked($valueStore[field.name])
 		// Avoid cyclic reactivity
 		if (checked !== newState) {
 			checked = newState
@@ -34,8 +35,8 @@
 	}
 
 	let checked = isChecked(field.initValue)
-	$: $values[field.name] = checked.toString()
-	$: updateChecked($values[field.name])
+	$: $valueStore[field.name] = checked.toString()
+	$: updateChecked($valueStore[field.name])
 </script>
 
 <Hint />
@@ -48,7 +49,7 @@
 		name={field.name}
 		aria-describedby={field.hintElementId}
 		aria-errormessage={field.errorElementId}
-		aria-invalid={!!$errors[field.name]}
+		aria-invalid={!!$errorStore[field.name]}
 		bind:checked
 		on:blur
 		on:focus

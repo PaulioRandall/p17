@@ -9,12 +9,13 @@
 	// @default "Unvalidate"
 	export let label = 'Unvalidate'
 
-	const fields = getContext('p17-fields')
-	const errors = getContext('p17-errors')
+	const form = getContext('p17-form')
+	const fieldStore = $form.fieldStore
+	const errorStore = $form.errorStore
 
 	const doUnvalidate = (event) => {
-		for (const name in $fields) {
-			$errors[name] = undefined
+		for (const name in $fieldStore) {
+			$errorStore[name] = undefined
 		}
 	}
 </script>

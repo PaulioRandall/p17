@@ -1,12 +1,13 @@
 <script>
 	import { getContext } from 'svelte'
 
-	const errors = getContext('p17-errors')
 	const field = getContext('p17-field')
+	const form = getContext('p17-form')
+	const errorStore = $form.errorStore
 </script>
 
-{#if $errors[field.name]}
+{#if $errorStore[field.name]}
 	<p id={field.errorElementId} class="p17-error p17-error-{field.type}">
-		{$errors[field.name]}
+		{$errorStore[field.name]}
 	</p>
 {/if}

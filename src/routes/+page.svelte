@@ -1,13 +1,16 @@
 <script>
 	import { browser } from '$app/environment'
-	import { Form, Field } from 'p17'
 	import {
+		Form, //
+		Field,
 		ButtonPopulate,
 		ButtonReset,
 		ButtonUnvalidate,
 		ButtonSubmit,
+		DebugFormPrinter,
+		DebugFieldPrinter,
+		DebugFormTable,
 	} from 'p17'
-	import { DebugFormPrinter, DebugFieldPrinter, DebugFormTable } from 'p17'
 
 	const submit = (values) => {
 		console.log('Submit values: ', values)

@@ -26,16 +26,16 @@
 	}
 
 	const form = getContext('p17-form')
-	const fieldStore = getContext('p17-fields')
-	const valueStore = getContext('p17-values')
-	const errorStore = getContext('p17-errors')
+	const fieldStore = $form.fieldStore
+	const valueStore = $form.valueStore
+	const errorStore = $form.errorStore
 
 	const browser = typeof window !== 'undefined'
 	browser && console.log('form', form)
 
-	$: browser && fields && $fieldStore && console.log('fields', $fieldStore)
-	$: browser && values && $valueStore && console.log('values', $valueStore)
-	$: browser && errors && $errorStore && console.log('errors', $errorStore)
+	$: browser && fields && console.log('fields', $fieldStore)
+	$: browser && values && console.log('values', $valueStore)
+	$: browser && errors && console.log('errors', $errorStore)
 </script>
 
 <!--@slot

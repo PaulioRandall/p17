@@ -3,20 +3,21 @@
 	import { getErrorState } from './shared'
 
 	const field = getContext('p17-field')
-	const errors = getContext('p17-errors')
+	const form = getContext('p17-form')
+	const errorStore = $form.errorStore
 
 	const removeError = () => {
-		if (typeof $errors[field.name] === undefined) {
+		if (typeof $errorStore[field.name] === undefined) {
 			return
 		}
 
-		errors.update((data) => {
+		errorStore.update((data) => {
 			delete data[field.name]
 			return data
 		})
 	}
 
-	$: errorState = getErrorState($errors[field.name])
+	$: errorState = getErrorState($errorStore[field.name])
 </script>
 
 <div

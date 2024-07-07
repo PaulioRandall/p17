@@ -2,7 +2,8 @@
 	import { getContext } from 'svelte'
 
 	const field = getContext('p17-field')
-	const values = getContext('p17-values')
+	const form = getContext('p17-form')
+	const valueStore = $form.valueStore
 </script>
 
 <input
@@ -11,5 +12,5 @@
 	type="hidden"
 	id={field.inputElementId}
 	name={field.name}
-	bind:value={$values[field.name]}
+	bind:value={$valueStore[field.name]}
 	{...$$restProps} />

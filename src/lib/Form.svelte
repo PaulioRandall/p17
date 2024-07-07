@@ -8,24 +8,24 @@
 	// Primary component in which fields are slotted into.
 	// $$restProps are passed to the form element (outer component element).
 
-	//@prop fields
+	//@prop fieldStore
 	// Store containing fields referenced by their input names.
 	// @module
 	// @default writable({})
-	export const fields = writable({})
+	export const fieldStore = writable({})
 
-	//@prop values
+	//@prop valueStore
 	// Store containing values referenced by their input names.
 	// @module
 	// @default writable({})
-	export const values = writable({})
+	export const valueStore = writable({})
 
-	//@prop errors
+	//@prop errorStore
 	// Store containing error messages referenced by their input names.
 	// An empty string represents either no error or unvalidated.
 	// @module
 	// @default writable({})
-	export const errors = writable({})
+	export const errorStore = writable({})
 
 	//@prop id
 	// Element id of the form.
@@ -51,6 +51,9 @@
 		  id,
 		  validate,
 		  submit,
+		  fieldStore,
+		  valueStore,
+		  errorStore,
 		}
 
 		@module
@@ -60,25 +63,16 @@
 		id,
 		validate,
 		submit,
+		fieldStore,
+		valueStore,
+		errorStore,
 	})
-
-	//@ctx p17-fields
-	// See fields property.
-	setContext('p17-fields', fields)
-
-	//@ctx p17-values
-	// See values property.
-	setContext('p17-values', values)
-
-	//@ctx p17-errors
-	// See errors property.
-	setContext('p17-errors', errors)
 
 	//@ctx p17-form
 	// See form property.
 	setContext('p17-form', form)
 
-	$: hasErrors = Object.values($errors).length > 0
+	$: hasErrors = Object.values($errorStore).length > 0
 </script>
 
 <form

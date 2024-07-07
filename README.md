@@ -12,11 +12,11 @@ I used the [GDS Design System](https://design-system.service.gov.uk/) as a loose
 
 My library's unique selling point is that the field unvalidates when a user focuses on an input after validation has accepted or reject the current content (JavaScript only). It's not perfect. The unvalidation simply removes the error message which means users won't have it as reference as they're typing a new answer.
 
-> Maybe I'll improve that in a future version. No garuntees.
+> Maybe I'll improve that in a future version.
 
 ## Made to be Plundered
 
-Do whatever as long as you adhere to the permissive MIT license found within.
+Fork, pillage, and plunder! Do whatever as long as you adhere to the project's permissive MIT license.
 
 ## Components
 
@@ -188,9 +188,9 @@ Represents a form field.
   export let validate = undefined
 
   // All supplied and derived field properties except value and error which
-  // are available via the 'p17-values' and 'p17-errors' contexts respectively.
+  // are available via the 'valueStore' and 'errorStore' within the 'p17-form' context respectively.
   // 
-  // The field object is also added to the list within the 'p17-fields' context.
+  // The field object is also added to the fields list within the 'p17-form' context.
   // 
   // $field = {
   //   type,
@@ -242,14 +242,14 @@ $restProps are passed to the form element (outer component element).
 ```svelte
 <script context="module">
   // Store containing fields referenced by their input names.
-  export let fields = writable({})
+  export let fieldStore = writable({})
 
   // Store containing values referenced by their input names.
-  export let values = writable({})
+  export let valueStore = writable({})
 
   // Store containing error messages referenced by their input names.
   // An empty string represents either no error or unvalidated.
-  export let errors = writable({})
+  export let errorStore = writable({})
 
   // Store containing the passed form level properties.
   // 
@@ -257,6 +257,9 @@ $restProps are passed to the form element (outer component element).
   //   id,
   //   validate,
   //   submit,
+  //   fieldStore,
+  //   valueStore,
+  //   errorStore,
   // }
   export let form = readable({})
 </script>
@@ -274,15 +277,6 @@ $restProps are passed to the form element (outer component element).
   // Function for submitting the form. It accepts a field name to value
   // object.
   export let submit = null
-
-  // See fields property.
-  setContext("p17-fields", ...)
-
-  // See values property.
-  setContext("p17-values", ...)
-
-  // See errors property.
-  setContext("p17-errors", ...)
 
   // See form property.
   setContext("p17-form", ...)

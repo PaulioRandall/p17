@@ -10,47 +10,49 @@
 	export let label = 'Submit'
 
 	const form = getContext('p17-form')
-	const fields = getContext('p17-fields')
-	const values = getContext('p17-values')
-	const errors = getContext('p17-errors')
+	const fieldStore = $form.fieldStore
+	const valueStore = $form.valueStore
+	const errorStore = $form.errorStore
 
 	const doSubmit = async (event) => {
 		formatFields()
 		validateFields()
 
-		if (Object.values($errors).length) {
+		if (Object.values($errorStore).length) {
 			event.preventDefault()
 			return
 		}
 
-		if (form.validate && !form.validate($values)) {
+		if (form.validate && !form.validate($valueStore)) {
 			event.preventDefault()
 			return
 		}
 
 		if (form.submit) {
 			event.preventDefault()
-			form.submit(structuredClone($values))
+			form.submit(structuredClone($valueStore))
 		}
 	}
 
 	const formatFields = () => {
-		for (const fieldName in $fields) {
-			if ($fields[fieldName].format) {
-				$values[fieldName] = $fields[fieldName].format($values[fieldName])
+		for (const fieldName in $fieldStore) {
+			if ($fieldStore[fieldName].format) {
+				$valueStore[fieldName] = $fieldStore[fieldName].format(
+					$valueStore[fieldName]
+				)
 			}
 		}
 	}
 
 	const validateFields = () => {
-		for (const fieldName in $fields) {
-			if (!$fields[fieldName].validate) {
-				$errors[fieldName] = ''
+		for (const fieldName in $fieldStore) {
+			if (!$fieldStore[fieldName].validate) {
+				$errorStore[fieldName] = ''
 				continue
 			}
 
-			const err = $fields[fieldName].validate($values[fieldName])
-			$errors[fieldName] = err ? err : ''
+			const err = $fieldStore[fieldName].validate($valueStore[fieldName])
+			$errorStore[fieldName] = err ? err : ''
 		}
 	}
 </script>

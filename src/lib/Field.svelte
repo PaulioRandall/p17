@@ -15,9 +15,10 @@
 	//@component
 	// Represents a form field.
 
-	const fields = getContext('p17-fields')
-	const values = getContext('p17-values')
-	const errors = getContext('p17-errors')
+	const form = getContext('p17-form')
+	const fieldStore = $form.fieldStore
+	const valueStore = $form.valueStore
+	const errorStore = $form.errorStore
 
 	//@prop type
 	// P17 Input type that will internally map to a HTML input type,
@@ -85,9 +86,9 @@
 
 	/*@ctx p17-field
 		All supplied and derived field properties except value and error which
-		are available via the 'p17-values' and 'p17-errors' contexts respectively.
+		are available via the 'valueStore' and 'errorStore' within the 'p17-form' context respectively.
 
-		The field object is also added to the list within the 'p17-fields' context.
+		The field object is also added to the fields list within the 'p17-form' context.
 
 		$field = {
 		  type,
@@ -107,18 +108,18 @@
 	*/
 	setContext('p17-field', field)
 
-	fields.update((data) => {
+	fieldStore.update((data) => {
 		data[name] = field
 		return data
 	})
 
-	$values[name] = value
-	$: value = $values[name]
+	$valueStore[name] = value
+	$: value = $valueStore[name]
 
 	onDestroy(() => {
-		delete $fields[name]
-		delete $values[name]
-		delete $errors[name]
+		delete $fieldStore[name]
+		delete $valueStore[name]
+		delete $errorStore[name]
 	})
 
 	const textualTypes = [

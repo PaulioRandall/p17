@@ -7,8 +7,9 @@
 	import metatypes from '../metatypes'
 
 	const field = getContext('p17-field')
-	const values = getContext('p17-values')
-	const errors = getContext('p17-errors')
+	const form = getContext('p17-form')
+	const valueStore = $form.valueStore
+	const errorStore = $form.errorStore
 
 	const metatype = metatypes[field.type]
 	field.metatype = metatype
@@ -19,7 +20,7 @@
 
 	const updateInput = () => {
 		if (input) {
-			input.value = $values[field.name]
+			input.value = $valueStore[field.name]
 		}
 	}
 
@@ -27,7 +28,7 @@
 		let v = input.value
 
 		// Avoid cyclic reactivity.
-		if (v === $values[field.name]) {
+		if (v === $valueStore[field.name]) {
 			return
 		}
 
@@ -35,7 +36,7 @@
 			v = convertType(v)
 		}
 
-		$values[field.name] = v
+		$valueStore[field.name] = v
 	}
 
 	const convertType = (v) => {
@@ -76,7 +77,7 @@
 		field.validate = metatype.defaultValidate
 	}
 
-	$: updateInput($values[field.name])
+	$: updateInput($valueStore[field.name])
 	$: updateClasses($$restProps.class)
 </script>
 
@@ -91,7 +92,7 @@
 	name={field.name}
 	aria-describedby={field.hintElementId}
 	aria-errormessage={field.errorElementId}
-	aria-invalid={!!$errors[field.name]}
+	aria-invalid={!!$errorStore[field.name]}
 	on:input={updateOutput}
 	on:input
 	on:blur

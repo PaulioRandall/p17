@@ -6,15 +6,16 @@
 	import metatypes from '../metatypes'
 
 	const field = getContext('p17-field')
-	const values = getContext('p17-values')
-	const errors = getContext('p17-errors')
+	const form = getContext('p17-form')
+	const valueStore = $form.valueStore
+	const errorStore = $form.errorStore
 
 	const metatype = metatypes[field.type]
 	field.metatype = metatype
 
 	let checked = {}
 	const updateChecked = () => {
-		const v = $values[field.name]
+		const v = $valueStore[field.name]
 		checked = {}
 
 		if (!v) {
@@ -35,12 +36,12 @@
 		field.validate = metatype.defaultValidate
 	}
 
-	$: $values[field.name] = Object.entries(checked) //
+	$: $valueStore[field.name] = Object.entries(checked) //
 		.filter(([k, v]) => !!v) //
 		.map(([k, v]) => k)
 		.join(',')
 
-	$: updateChecked($values[field.name])
+	$: updateChecked($valueStore[field.name])
 </script>
 
 <Group>
@@ -56,7 +57,7 @@
 					name={field.name}
 					aria-describedby={field.hintElementId}
 					aria-errormessage={field.errorElementId}
-					aria-invalid={!!$errors[field.name]}
+					aria-invalid={!!$errorStore[field.name]}
 					bind:checked={checked[option.value]}
 					on:blur
 					on:focus

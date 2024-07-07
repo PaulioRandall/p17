@@ -14,8 +14,9 @@
 	// @default false
 	export let clear = false
 
-	const fieldStore = getContext('p17-fields')
-	const valueStore = getContext('p17-values')
+	const form = getContext('p17-form')
+	const fieldStore = $form.fieldStore
+	const valueStore = $form.valueStore
 
 	const doClear = (event) => {
 		for (const name in $fieldStore) {

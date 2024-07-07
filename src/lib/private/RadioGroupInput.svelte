@@ -6,16 +6,19 @@
 	import metatypes from '../metatypes'
 
 	const field = getContext('p17-field')
-	const values = getContext('p17-values')
-	const errors = getContext('p17-errors')
+	const form = getContext('p17-form')
+	const valueStore = $form.valueStore
 
 	const metatype = metatypes[field.type]
 	field.metatype = metatype
 
 	const uncheckIfChecked = (event) => {
-		if (event.target.checked && event.target.value === $values[field.name]) {
+		if (
+			event.target.checked &&
+			event.target.value === $valueStore[field.name]
+		) {
 			event.target.checked = false
-			$values[field.name] = ''
+			$valueStore[field.name] = ''
 		}
 	}
 
@@ -41,7 +44,7 @@
 					name={field.name}
 					aria-describedby={field.hintElementId}
 					value={option.value}
-					bind:group={$values[field.name]}
+					bind:group={$valueStore[field.name]}
 					on:click={uncheckIfChecked}
 					on:blur
 					on:focus

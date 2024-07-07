@@ -12,11 +12,11 @@ I used the [GDS Design System](https://design-system.service.gov.uk/) as a loose
 
 My library's unique selling point is that the field unvalidates when a user focuses on an input after validation has accepted or reject the current content (JavaScript only). It's not perfect. The unvalidation simply removes the error message which means users won't have it as reference as they're typing a new answer.
 
-> Maybe I'll improve that in a future version. No garuntees.
+> Maybe I'll improve that in a future version.
 
 ## Made to be Plundered
 
-Do whatever as long as you adhere to the permissive MIT license found within.
+Fork, pillage, and plunder! Do whatever as long as you adhere to the project's permissive MIT license.
 
 ## Components
 

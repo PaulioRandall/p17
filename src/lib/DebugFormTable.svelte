@@ -4,8 +4,9 @@
 	//@component
 	// Renders a reactively updating table of field values.
 
-	const fields = getContext('p17-fields')
-	const values = getContext('p17-values')
+	const form = getContext('p17-form')
+	const fieldStore = $form.fieldStore
+	const valueStore = $form.valueStore
 </script>
 
 <table class="p17-data-table">
@@ -14,12 +15,12 @@
 		<th class="p17-data-table-cell p17-data-table-cell-header">Value</th>
 		<th class="p17-data-table-cell p17-data-table-cell-header">Label</th>
 	</tr>
-	{#if $fields}
-		{#each Object.values($fields) as f (f.id)}
+	{#if $fieldStore}
+		{#each Object.values($fieldStore) as f (f.id)}
 			<tr class="p17-data-table-row">
 				<td class="p17-data-table-cell p17-data-table-cell-data">{f.name}</td>
 				<td class="p17-data-table-cell p17-data-table-cell-data">
-					{$values && $values[f.name]}
+					{$valueStore && $valueStore[f.name]}
 				</td>
 				<td class="p17-data-table-cell p17-data-table-cell-data">{f.label}</td>
 			</tr>

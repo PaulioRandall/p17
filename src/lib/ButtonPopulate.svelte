@@ -14,13 +14,16 @@
 	// @default {}
 	export let values = {}
 
-	const fieldStore = getContext('p17-fields')
-	const valueStore = getContext('p17-values')
+	const form = getContext('p17-form')
+	const fieldStore = $form.fieldStore
+	const valueStore = $form.valueStore
+	const errorStore = $form.errorStore
 
 	const doPopulate = (event) => {
 		for (const fieldName in values) {
 			if ($fieldStore[fieldName]) {
 				$valueStore[fieldName] = values[fieldName]
+				$errorStore[fieldName] = undefined
 			}
 		}
 	}

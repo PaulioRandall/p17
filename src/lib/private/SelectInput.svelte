@@ -7,8 +7,9 @@
 	import Error from './Error.svelte'
 
 	const field = getContext('p17-field')
-	const values = getContext('p17-values')
-	const errors = getContext('p17-errors')
+	const form = getContext('p17-form')
+	const valueStore = $form.valueStore
+	const errorStore = $form.errorStore
 
 	const metatype = metatypes[field.type]
 	field.metatype = metatype
@@ -32,8 +33,8 @@
 		name={field.name}
 		aria-describedby={field.hintElementId}
 		aria-errormessage={field.errorElementId}
-		aria-invalid={!!$errors[field.name]}
-		bind:value={$values[field.name]}
+		aria-invalid={!!$errorStore[field.name]}
+		bind:value={$valueStore[field.name]}
 		on:blur
 		on:focus
 		on:focusin
