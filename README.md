@@ -304,7 +304,7 @@ $restProps are passed to the form element
   setContext("p17-form", ...)
 </script>
 
-<!-- Form fields, buttons, and anything else you fancy. -->
+<!-- Form theme, fields, buttons, and anything else you fancy. -->
 <slot />
 ```
 
@@ -316,4 +316,57 @@ $restProps are passed to the form element
 >
   <div />
 </Form>
+```
+
+### `<SimpleDarkTheme>`
+
+```svelte
+<script>
+  // If true, styling is applied based on user preferences.
+  export let prefers = false
+</script>
+
+<!-- Form content. -->
+<slot />
+```
+
+```svelte
+<SimpleDarkTheme
+  prefers={false}
+>
+  <div />
+</SimpleDarkTheme>
+```
+
+### `<SimpleLightTheme>`
+
+```svelte
+<script>
+  // If true, styling is applied based on user preferences.
+  export let prefers = false
+</script>
+
+<!-- Form content. -->
+<slot />
+```
+
+```svelte
+<SimpleLightTheme
+  prefers={false}
+>
+  <div />
+</SimpleLightTheme>
+```
+
+### `<SimpleTheme>`
+
+```svelte
+<!-- Form content. -->
+<slot />
+```
+
+```svelte
+<SimpleTheme>
+  <div />
+</SimpleTheme>
 ```

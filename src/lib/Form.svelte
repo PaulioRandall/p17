@@ -2,7 +2,6 @@
 	import { setContext } from 'svelte'
 	import { writable, readable } from 'svelte/store'
 	import { randomId } from './private/shared'
-	import ThemeDefault from './private/ThemeDefault.svelte'
 
 	//@component
 	// Primary component in which fields are slotted into.
@@ -91,10 +90,8 @@
 	class:p17-form={true}
 	class:p17-form-error={hasErrors}
 	{...$$restProps}>
-	<ThemeDefault>
-		<!--@slot
-			Form fields, buttons, and anything else you fancy.
+	<!--@slot
+			Form theme, fields, buttons, and anything else you fancy.
 		-->
-		<slot />
-	</ThemeDefault>
+	<slot />
 </form>
