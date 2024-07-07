@@ -18,6 +18,19 @@ My library's unique selling point is that the field unvalidates when a user focu
 
 Fork, pillage, and plunder! Do whatever as long as you adhere to the project's permissive MIT license.
 
+## Quick Overview
+
+This form has been designed such that each field has three states: <span style="color: #cfecc1;">valid (green)</span>, <span style="color: #da878c;">invalid (red)</span>, and <span style="color: #80B0e9;">unvalidated (blue)</span>.
+
+<ul>
+	<li>On page load, all fields are in the <i>unvalidated</i> state.</li>
+	<li>Clicking <strong>Quick fill</strong> then <strong>Submit</strong> will populate each field with valid data and set them all too <i>unvalidated</i>.</li>
+	<li>Clicking <strong>Reset</strong> will remove the value from each field and set them all too <i>unvalidated</i>.</li>
+	<li>Clicking <strong>Unvalidate</strong> will set all fields to <i>unvalidated</i> without changing field values.</li>
+	<li>Clicking <strong>Submit</strong> will run formatting and validation. Fields with errors will be set to the <i>error</i> state while valid fields the <i>valid</i> state.</li>
+	<li>After a failed submission, when focusing on or modifying a field it reverts to the <i>unvalidated</i> state to indicate the input has been touched. This allows the user to see which errors they've corrected and which remain.</li>
+</ul>
+
 ## Components
 
 {{PLACEHOLDER}}
