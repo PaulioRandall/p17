@@ -18,10 +18,12 @@
 	const fieldStore = $form.fieldStore
 	const valueStore = $form.valueStore
 	const errorStore = $form.errorStore
+	const validStore = $form.validStore
 
 	const doClear = (event) => {
 		for (const name in $fieldStore) {
 			$errorStore[name] = ''
+			$validStore[name] = null
 
 			if (clear) {
 				$valueStore[name] = ''
