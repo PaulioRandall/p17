@@ -1,31 +1,23 @@
 <script>
 	import { getContext } from 'svelte'
-	import { getErrorState } from './shared'
 
 	const field = getContext('p17-field')
 	const form = getContext('p17-form')
-	const errorStore = $form.errorStore
+	const validStore = $form.validStore
 
-	const removeError = () => {
-		if (typeof $errorStore[field.name] === undefined) {
-			return
-		}
-
-		errorStore.update((data) => {
-			delete data[field.name]
-			return data
-		})
+	const invalidate = () => {
+		$validStore[field.name] = null
 	}
 
-	$: errorState = getErrorState($errorStore[field.name])
+	$: validState = $validStore[field.name]
 </script>
 
 <div
 	id={field.id}
 	class="p17-field p17-field-{field.type}"
-	class:p17-field-not-validated={errorState === 'not-validated'}
-	class:p17-field-invalid={errorState === 'invalid'}
-	class:p17-field-valid={errorState === 'valid'}
-	on:focusin={removeError}>
+	class:p17-field-not-validated={typeof validState !== 'boolean'}
+	class:p17-field-invalid={validState === false}
+	class:p17-field-valid={validState === true}
+	on:focusin={invalidate}>
 	<slot />
 </div>

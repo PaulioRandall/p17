@@ -6,7 +6,8 @@
 
 	//@component
 	// Primary component in which fields are slotted into.
-	// $$restProps are passed to the form element (outer component element).
+	// $$restProps are passed to the form element
+	// (outer component element).
 
 	//@prop fieldStore
 	// Store containing fields referenced by their input names.
@@ -26,6 +27,14 @@
 	// @module
 	// @default writable({})
 	export const errorStore = writable({})
+
+	//@prop validStore
+	// Store containing validation state referenced by their input names.
+	// True for valid, false for invalid, and any other value
+	// (or not present) indicates unvalidated.
+	// @module
+	// @default writable({})
+	export const validStore = writable({})
 
 	//@prop id
 	// Element id of the form.
@@ -54,6 +63,7 @@
 		  fieldStore,
 		  valueStore,
 		  errorStore,
+		  validStore,
 		}
 
 		@module
@@ -66,6 +76,7 @@
 		fieldStore,
 		valueStore,
 		errorStore,
+		validStore,
 	})
 
 	//@ctx p17-form

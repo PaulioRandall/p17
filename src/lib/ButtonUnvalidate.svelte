@@ -11,11 +11,11 @@
 
 	const form = getContext('p17-form')
 	const fieldStore = $form.fieldStore
-	const errorStore = $form.errorStore
+	const validStore = $form.validStore
 
 	const doUnvalidate = (event) => {
 		for (const name in $fieldStore) {
-			$errorStore[name] = undefined
+			$validStore[name] = null
 		}
 	}
 </script>

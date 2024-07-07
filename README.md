@@ -201,9 +201,11 @@ Represents a form field.
   export let validate = undefined
 
   // All supplied and derived field properties except value and error which
-  // are available via the 'valueStore' and 'errorStore' within the 'p17-form' context respectively.
+  // are available via the 'valueStore' and 'errorStore' within the
+  // 'p17-form' context respectively.
   // 
-  // The field object is also added to the fields list within the 'p17-form' context.
+  // The field object is also added to the fields list within the
+  // 'p17-form' context.
   // 
   // $field = {
   //   type,
@@ -250,7 +252,8 @@ Represents a form field.
 ### `<Form>`
 
 Primary component in which fields are slotted into.
-$restProps are passed to the form element (outer component element).
+$restProps are passed to the form element
+(outer component element).
 
 ```svelte
 <script context="module">
@@ -264,6 +267,11 @@ $restProps are passed to the form element (outer component element).
   // An empty string represents either no error or unvalidated.
   export let errorStore = writable({})
 
+  // Store containing validation state referenced by their input names.
+  // True for valid, false for invalid, and any other value
+  // (or not present) indicates unvalidated.
+  export let validStore = writable({})
+
   // Store containing the passed form level properties.
   // 
   // $form = {
@@ -273,6 +281,7 @@ $restProps are passed to the form element (outer component element).
   //   fieldStore,
   //   valueStore,
   //   errorStore,
+  //   validStore,
   // }
   export let form = readable({})
 </script>

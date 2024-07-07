@@ -19,6 +19,7 @@
 	const fieldStore = $form.fieldStore
 	const valueStore = $form.valueStore
 	const errorStore = $form.errorStore
+	const validStore = $form.validStore
 
 	//@prop type
 	// P17 Input type that will internally map to a HTML input type,
@@ -86,9 +87,11 @@
 
 	/*@ctx p17-field
 		All supplied and derived field properties except value and error which
-		are available via the 'valueStore' and 'errorStore' within the 'p17-form' context respectively.
+		are available via the 'valueStore' and 'errorStore' within the
+		'p17-form' context respectively.
 
-		The field object is also added to the fields list within the 'p17-form' context.
+		The field object is also added to the fields list within the
+		'p17-form' context.
 
 		$field = {
 		  type,
@@ -113,6 +116,7 @@
 		return data
 	})
 
+	$validStore[name] = null
 	$valueStore[name] = value
 	$: value = $valueStore[name]
 
@@ -120,6 +124,7 @@
 		delete $fieldStore[name]
 		delete $valueStore[name]
 		delete $errorStore[name]
+		delete $validStore[name]
 	})
 
 	const textualTypes = [

@@ -13,6 +13,7 @@
 	const fieldStore = $form.fieldStore
 	const valueStore = $form.valueStore
 	const errorStore = $form.errorStore
+	const validStore = $form.validStore
 
 	const doSubmit = async (event) => {
 		formatFields()
@@ -48,11 +49,13 @@
 		for (const fieldName in $fieldStore) {
 			if (!$fieldStore[fieldName].validate) {
 				$errorStore[fieldName] = ''
+				$validStore[fieldName] = true
 				continue
 			}
 
 			const err = $fieldStore[fieldName].validate($valueStore[fieldName])
 			$errorStore[fieldName] = err ? err : ''
+			$validStore[fieldName] = !$errorStore[fieldName]
 		}
 	}
 </script>

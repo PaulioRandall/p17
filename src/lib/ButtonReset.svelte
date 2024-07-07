@@ -17,9 +17,12 @@
 	const form = getContext('p17-form')
 	const fieldStore = $form.fieldStore
 	const valueStore = $form.valueStore
+	const errorStore = $form.errorStore
 
 	const doClear = (event) => {
 		for (const name in $fieldStore) {
+			$errorStore[name] = ''
+
 			if (clear) {
 				$valueStore[name] = ''
 			} else {

@@ -17,13 +17,13 @@
 	const form = getContext('p17-form')
 	const fieldStore = $form.fieldStore
 	const valueStore = $form.valueStore
-	const errorStore = $form.errorStore
+	const validStore = $form.validStore
 
 	const doPopulate = (event) => {
 		for (const fieldName in values) {
 			if ($fieldStore[fieldName]) {
 				$valueStore[fieldName] = values[fieldName]
-				$errorStore[fieldName] = undefined
+				$validStore[fieldName] = null
 			}
 		}
 	}
